@@ -41,6 +41,8 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title($pageTitle);
 $PAGE->set_heading($pageTitle);
 
+$PAGE->set_url('/local/good_habits/index.php');
+
 //$PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin('ui');
 

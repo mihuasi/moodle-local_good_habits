@@ -76,7 +76,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $arr[] = $this->printHabit($calendar, $habit);
         }
 
-        $arr[] = $this->printAddHabitEl();
+        if (has_capability('local/good_habits:addhabit', context_system::instance())) {
+            $arr[] = $this->printAddHabitEl();
+        }
 
         return '<div class="habits">' . implode('', $arr) . '</div>';
     }
