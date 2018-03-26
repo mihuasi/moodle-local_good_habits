@@ -1,0 +1,252 @@
+.habits, .notes {
+    /*width: 640px;*/
+    margin: auto;
+    /*background: #282C37;*/
+}
+
+header {
+    width: 640px;
+    padding-top: 10px;
+    margin: auto;
+    background: #282C37;
+}
+
+header .main-menu {
+    float: left;
+    margin-top: -10px;
+}
+
+.calendar {
+    margin-top: -8px;
+}
+
+.calendar {
+    margin-left: 200px;
+    /*float: right;*/
+    width: calc(100% - 210px);
+    max-width: calc(50px * 8);
+    /*overflow-y: hidden;*/
+    /*overflow-x: scroll;*/
+    /*direction: rtl;*/
+    margin-top: 50px;
+}
+
+.calendar .dates {
+    /*width: calc(50px * 32);*/
+}
+
+.calendar .time-unit {
+    height: 40px;
+    border-radius: 40px;
+    padding-top: 6.5px;
+}
+.calendar .time-unit {
+    float: left;
+    height: 55px;
+    padding-top: 12px;
+    width: 40px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 40px;
+    background: #282C37;
+}
+
+.calendar .time-unit .top-line {
+    text-transform: uppercase;
+    font-size: 8px;
+    color: #9BAEC8;
+}
+
+.calendar .time-unit .bottom-line {
+    font-size: 15px;
+    line-height: 15px;
+    color: #9BAEC8;
+}
+
+.time-unit .month {
+    margin-top: -40px;
+    margin-bottom: 20px;
+}
+
+.year {
+    float: left;
+    height: 55px;
+    padding-top: 12px;
+    width: 40px;
+    text-align: center;
+    margin-left: -40px;
+    font-weight: bold;
+    position: relative;
+}
+
+.calendar .time-unit.january {
+    background: #d1ffbb;
+}
+
+.calendar .time-unit.february {
+    background: #bbf3e6;
+}
+
+.calendar .time-unit.march {
+    background: #554377;
+}
+
+.calendar .time-unit.april {
+    background: #6a2b6b;
+}
+
+.calendar .time-unit.may {
+    background: #f5d8e4;
+}
+
+.calendar .time-unit.june {
+    background: #f5e7d8;
+}
+
+.calendar .time-unit.july {
+    background: #e2f5d8;
+}
+
+.calendar .time-unit.august {
+    background: #e8e8fb;
+}
+
+.calendar .time-unit.september {
+    background: #e3e8d9;
+}
+
+.calendar .time-unit.october {
+    background: #ffd55a;
+}
+
+.calendar .time-unit.november {
+    background: #ffdac8;
+}
+
+.calendar .time-unit.december {
+    background: #c8deff;
+}
+
+
+.habits .habit, .notes .habit {
+    padding: 10px;
+    margin: 2px 0;
+    /*background: #313543;*/
+}
+
+.habits .habit .streak{
+    float: left;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 10px;
+    background: #f9f0d7;
+    color: #9BAEC8;
+    margin-right: 10px;
+}
+
+.habits .habit .title, .notes .habit .title {
+    float: left;
+    width: 140px;
+    min-height: 20px;
+}
+
+.habits .habit .time-line {
+    /*float: right;*/
+    /*width: calc(100% - 190px);*/
+    /*max-width: calc(50px * 8);*/
+    /*overflow-y: hidden;*/
+    /*overflow-x: scroll;*/
+    /*overflow-x: hidden;*/
+    /*direction: rtl;*/
+}
+
+.habits .habit .time-line .checkmarks {
+    width: calc(50px * 32);
+}
+
+.habits .habit .time-line .checkmark{
+    float: left;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #e6c973;
+    border-radius: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.grid-is-open .habits .habit .time-line .checkmark {
+    cursor: not-allowed;
+}
+
+.habits .habit .time-line .checkmark .empty-day {
+    color: #9BAEC8;
+}
+
+.habits .habit .description {
+    color: #c8a09b;
+    font-size: 12px;
+    margin-bottom: -50px;
+    line-height: 14px;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.talentgrid {
+    margin-bottom: 150px;
+    position: relative;
+}
+
+.grid-buttons {
+    position: absolute;
+    left: 399px;
+    top: 67px;
+}
+
+.grid-heading {
+    font-size: 25px;
+    margin-left: 125px;
+    margin-top: 20px;
+}
+
+.goodhabits-container .talentgrid-token {
+    cursor: default;
+}
+
+.streak.add-new-habit {
+    font-size: 40px;
+    cursor: pointer;
+    opacity: 0.3;
+}
+
+.streak.add-new-habit.clicked {
+    cursor: default;
+    opacity: 1;
+}
+
+.add-new-habit-form label, .add-new-habit-form input {
+    display:inline;
+}
+
+.add-new-habit-form {
+    display: none;
+}
+
+.add-new-habit-form input.new-habit-name {
+    width: 100px;
+}
+.add-new-habit-form input.new-habit-desc {
+    width: 200px;
+}
+
+.add-new-habit-form label {
+    margin-left: 10px;
+    margin-right: 10px;
+}

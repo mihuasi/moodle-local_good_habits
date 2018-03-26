@@ -1,0 +1,236 @@
+/*
+ * @package    Talent Grid jQuery plugin.
+ * @copyright  2017 Joseph Cape (http://chacana.co.uk)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+.talentgrid-report-container .cell-with-smiley, .talentgrid-report-container .cell-with-multiple-smileys {
+    cursor: pointer;
+}
+
+.clearboth {
+    clear: both;
+}
+.talentgrid-userlist-container {
+    float: left;
+    margin-top: 30px;
+}
+
+ul.talentgrid-userlist li {
+    cursor: pointer;
+}
+
+ul.talentgrid-userlist {
+    width: 200px;
+    height: 338px;
+    overflow-y: scroll;
+}
+
+.table-plus-axis.report{
+    width: 338px;
+    float:left;
+}
+
+.table-plus-axis {
+    margin-top: 40px;
+    width: 338px;
+}
+
+div.table-plus-axis.centre-el {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mform fieldset#id_question div {
+    margin: 0; padding: 0;
+}
+.talentgrid-token {
+    cursor:pointer;
+/*    width:32px;
+    height:32px;*/
+    z-index: 1;
+}
+
+.table-plus-axis {
+    position: relative;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.talentgrid-y-axis {
+    position: absolute;
+    left:-40px;
+    top: 144px;
+}
+
+.talentgrid-y-axis.large-label, .talentgrid-x-axis.large-label {
+    font-size: 22px;
+}
+.talentgrid-y-axis.large-label.small-labels-also-used {
+   left:-120px;
+}
+
+.talentgrid-y-axis.large-label.only-large {
+    left: -100px;
+}
+
+.talentgrid-x-axis.large-label{
+    bottom: -100px;
+}
+
+.talentgrid-x-axis.large-label.only-large{
+    bottom: -60px;
+}
+
+.y-sub-label {
+    position: absolute;
+}
+
+
+.x-sub-label {
+    position: absolute;
+}
+
+.talentgrid-x-axis {
+    position: absolute;
+    bottom: -20px;
+    left: 0px;
+}
+
+.rotated-text {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+
+    /* also accepts left, right, top, bottom coordinates; not required, but a good idea for styling */
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+
+    /* Should be unset in IE9+ I think. */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+
+.talentgrid-cell{
+    border: solid #D0D0D0 1px;
+    table-layout:fixed;
+
+    margin: 0;
+    padding: 0;
+}
+
+.talentgrid-cell.cell-with-smiley {
+    height: 32px;
+}
+
+.talentgrid-cell.emboldened {
+    border-left: solid black 3px;
+}
+
+.talentgrid-cell.final {
+    border-right: solid black 3px;
+}
+
+.talentgrid-row.final, .talentgrid-row.final td {
+    border-bottom: solid black 3px;
+}
+
+.talentgrid-row.emboldened,
+.talentgrid-row.emboldened td
+{
+    border-top: solid black 3px;
+}
+
+.talentgrid-table {
+    height: 288px;
+    width: 288px;
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+}
+
+.talentgrid-image {
+    vertical-align: middle;
+    border: 0;
+}
+
+td.ui-draggable{
+    background-clip: padding-box
+}
+
+.x-band-1.y-band-1 {
+    background-color: #ff9999;
+}
+
+.x-band-2.y-band-1, .x-band-3.y-band-1, .x-band-2.y-band-2 {
+    background-color: #ffff99;
+}
+
+.x-band-3.y-band-3, .x-band-3.y-band-2, .x-band-2.y-band-3 {
+    background-color: #ccffef;
+}
+
+.x-band-1.y-band-2, .x-band-1.y-band-3 {
+    background-color: #ffebcc;
+}
+
+.table-plus-axis {
+    float: left;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.talentgrid-controls {
+    float: left;
+    margin-top: 160px;
+}
+
+.talentgrid {
+    margin-left: 100px;
+}
+
+.talentgrid-select-controls {
+    margin-top: 20px;
+}
+
+.axis-selector-label {
+    margin-left:5px;
+}
+
+.drag-instructions-arrow {
+    font-size: 30px;
+    margin-right:10px;
+}
+
+.drag-instructions {
+    margin-left: 10px;
+}
+
+.talentgrid-select-controls select {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+table.band-table {
+    position: absolute;
+    left: 0;
+    right: 0;
+    /*border: solid black 3px;*/
+    z-index: 1;
+}
+
+table.band-table td {
+    opacity: 0;
+}
+
+* {
+ font-size: 100%;
+ font-family: Arial;
+}
