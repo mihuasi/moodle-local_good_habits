@@ -48,7 +48,7 @@ class FlexiCalendarUnit extends \DateTime {
                 $bottomLine = $this->format('d');
                 break;
             case 7:
-                $topLine = 'WEEK';
+                $topLine = get_string('week_displayunit', 'local_good_habits');
                 $bottomLine = $this->format('W');
                 break;
         }

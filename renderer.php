@@ -166,7 +166,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $select = " <select name='time-period-selector' autocomplete='off'>$optionsTxt</select>";
 
-        $submit = "<input type='submit' value='Change Calendar'> </input>";
+        $submitTxt = get_string('submit_text_change_cal', 'local_good_habits');
+
+        $submit = "<input type='submit' value='$submitTxt'> </input>";
         $html = "<form> $sessionKey {$select} $submit </form>";
         return $html;
     }
@@ -183,9 +185,14 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $sessionKey = $this->printHiddenSessionKey();
 
-        $habitName = "<label for='new-habit-name'>Name</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
-        $habitDesc = "<label for='new-habit-desc'>Description</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
-        $submit = "<input type='submit' value='Add New Habit'> </input>";
+        $nameTxt =  get_string('add_new_habit_name', 'local_good_habits');
+        $descTxt =  get_string('add_new_habit_desc', 'local_good_habits');
+
+        $habitName = "<label for='new-habit-name'>$nameTxt</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
+        $habitDesc = "<label for='new-habit-desc'>$descTxt</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
+
+        $submitTxt = get_string('add_new_habit', 'local_good_habits');
+        $submit = "<input type='submit' value='$submitTxt'> </input>";
 
         $form = "<form class='add-new-habit-form' method='post'> $sessionKey $habitName $habitDesc $submit</form>";
         $html .= "<div class='habit'>$plus $form</div>";

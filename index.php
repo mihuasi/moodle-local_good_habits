@@ -35,7 +35,8 @@ $context = context_system::instance();
 
 $toDate = optional_param('toDate', null, PARAM_TEXT);
 
-$pageTitle = 'Good Habits';
+$pageTitle = get_string('plugin_title', 'local_good_habits');
+
 $PAGE->set_context($context);
 $PAGE->set_pagelayout('standard');
 $PAGE->set_title($pageTitle);

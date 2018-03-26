@@ -10,7 +10,7 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 ## Future improvements
 
 - Better access control.
-- Multi-lingual.
+- Improve multi-lingual support.
 - Implement as an activity module to hook into Moodle features such as activity tracking.
 - Decouple calendar system from entry type to support alternative types.
 - Support for tracking habits on a single dimension.

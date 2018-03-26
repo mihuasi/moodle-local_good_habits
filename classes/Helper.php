@@ -32,10 +32,10 @@ class Helper {
 
     public static function possiblePeriodDurations() {
         $vals = array(
-            1 => 'By day',
-            3 => '3 days',
-            5 => '5 days',
-            7 => 'By week',
+            1 => get_string('by_day', 'local_good_habits'),
+            3 => get_string('x_days', 'local_good_habits', 3),
+            5 => get_string('x_days', 'local_good_habits', 5),
+            7 => get_string('by_week', 'local_good_habits', 3),
         );
         return $vals;
     }

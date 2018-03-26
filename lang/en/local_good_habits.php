@@ -22,3 +22,12 @@
  */
 
 $string['pluginname'] = 'Good Habits';
+$string['plugin_title'] = 'Good Habits';
+$string['by_day'] = 'By day';
+$string['by_week'] = 'By week';
+$string['x_days'] = '{$a} days';
+$string['submit_text_change_cal'] = 'Change Calendar';
+$string['add_new_habit_name'] = 'Name';
+$string['add_new_habit_desc'] = 'Description';
+$string['add_new_habit'] = 'Add New Habit';
+$string['week_displayunit'] = 'WEEK';
