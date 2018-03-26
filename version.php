@@ -23,5 +23,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->version   = 2018031202;              // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2017110800;              // Requires this Moodle version
+$plugin->requires  = 2014051220;              // Requires this Moodle version
 $plugin->component = 'local_good_habits'; // Full name of the plugin (used for diagnostics)
+
+$plugin->release = '1.0';
+$plugin->maturity = MATURITY_BETA;
