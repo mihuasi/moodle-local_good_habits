@@ -48,6 +48,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $month = $unit->displayMonth($isFirst);
             $display = $unit->displayUnit();
             $topLine = $display['topLine'];
+
             $singleLineDisplay = $topLine . ' ' . $display['bottomLine'];
             if ($isFirst) {
                 $topLine = $this->printBackLink($backUrl, $topLine);
@@ -71,20 +72,28 @@ class local_good_habits_renderer extends plugin_renderer_base {
     }
 
     public function printHabits(gh\FlexiCalendar $calendar, $habits) {
+        global $PAGE;
         $arr = array();
         foreach ($habits as $habit) {
             $arr[] = $this->printHabit($calendar, $habit);
         }
 
-        $arr[] = $this->printAddHabitEl();
+        if (has_capability('local/good_habits:manage_habits', $PAGE->context)) {
+            $arr[] = $this->printAddHabitEl();
+        }
 
         return '<div class="habits">' . implode('', $arr) . '</div>';
     }
 
     public function printHabit(gh\FlexiCalendar $calendar, gh\Habit $habit) {
+        global $PAGE;
         $html = "<div class='habit habit-".$habit->id."'>";
 
-        $html .= '<div class="streak"></div>';
+        $canManage = has_capability('local/good_habits:manage_habits', $PAGE->context);
+
+        $canManageClass = ($canManage) ? ' can-edit ' : '';
+
+        $html .= '<div class="streak ' . $canManageClass . '" data-habit-id="'.$habit->id.'"></div>';
 
         $html .= '    <div class="title"><div class="habit-name">'.$habit->name.'</div><div class="description">'.$habit->description.'</div></div>';
 
@@ -107,7 +116,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
     }
 
     private function printCheckmarks(gh\FlexiCalendar $calendar, gh\Habit $habit) {
-        global $USER;
+        global $USER, $PAGE;
 
         $html = '';
 
@@ -123,7 +132,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
                 $dataXYtxt = ' data-x="'.$entry->x_axis_val.'" data-y="'.$entry->y_axis_val.'" ';
                 $txt = $entry->x_axis_val . ' / ' . $entry->y_axis_val;
             }
-            $html .= '<div class="checkmark" data-timestamp="'.$unit->getTimestamp().'" '.$dataXYtxt.'>'.$txt.'</div>';
+            $canInteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
+            $canInteractClass = ($canInteract) ? '' : ' no-interact ';
+            $html .= '<div class="checkmark ' . $canInteractClass . '" data-timestamp="'.$unit->getTimestamp().'" '.$dataXYtxt.'>'.$txt.'</div>';
         }
 
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
@@ -150,9 +161,30 @@ class local_good_habits_renderer extends plugin_renderer_base {
     }
 
     public function printHiddenData () {
-        global $CFG;
+        global $CFG, $PAGE;
 
-        return '<div class="goodhabits-hidden-data" data-wwwroot="'. $CFG->wwwroot .'" ></div> ';
+        $data = array(
+            'wwwroot' => $CFG->wwwroot,
+            'sesskey' => sesskey(),
+            'can-interact' => (int) has_capability('local/good_habits:manage_entries', $PAGE->context),
+            'can-manage' => (int) has_capability('local/good_habits:manage_habits', $PAGE->context),
+        );
+
+        $dataText = '';
+        foreach ($data as $key => $val) {
+            $dataText .= ' data-'.$key.'="'.$val.'" ';
+        }
+
+        $hiddenData = '<div class="goodhabits-hidden-data" '.$dataText.'></div> ';
+
+        $langStringIds = array(
+            'confirm_delete'
+        );
+        $dataLang = gh\Helper::langStringAsData($langStringIds);
+
+        $hiddenLangStrings = '<div class="goodhabits-hidden-lang" '.$dataLang.'></div> ';
+
+        return $hiddenData . $hiddenLangStrings;
     }
 
     public function timePeriodSelector($options, $selected) {

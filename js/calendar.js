@@ -1,10 +1,34 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * JavaScript library for the good_habits plugin.
+ *
+ * @package    local
+ * @subpackage good_habits
+ * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 jQuery(window).on('load',function($) {
 
     var $ = jQuery;
     
     function initGrid(x, y) {
 
-        var wwwroot = $('.goodhabits-hidden-data').data('wwwroot');
+        var wwwroot = getHiddenData('wwwroot');
 
         $.when(
             $.getScript( wwwroot + "/local/good_habits/talentgrid/talentgrid-plugin.js" ),
@@ -120,6 +144,12 @@ jQuery(window).on('load',function($) {
 
         var gridOpen = $('.goodhabits-container').hasClass('grid-is-open');
 
+        var canInteract = getHiddenData('can-interact');
+
+        if (!canInteract) {
+            return null;
+        }
+
         if (gridOpen) {
             return null;
         }
@@ -161,10 +191,11 @@ jQuery(window).on('load',function($) {
         var selectedCheckmark = $('.checkmark.is-selected');
         var habitId = selectedCheckmark.parent().data('id');
         if (action == 'submit') {
-            var wwwroot = $('.goodhabits-hidden-data').data('wwwroot');
+            var wwwroot = getHiddenData('wwwroot');
             var timestamp = selectedCheckmark.data('timestamp');
             var periodDuration = $('.goodhabits-container .calendar').data('period-duration');
-            var data = {x: values.x,y: values.y, habitId: habitId, timestamp: timestamp, periodDuration: periodDuration};
+            var sesskey = getHiddenData('sesskey');
+            var data = {x: values.x,y: values.y, habitId: habitId, timestamp: timestamp, periodDuration: periodDuration, sesskey: sesskey};
             $.post( wwwroot + "/local/good_habits/ajax_save_entry.php", data)
                 .done(function( data ) {
                     // alert( "Data Loaded: " + data );
@@ -207,6 +238,40 @@ jQuery(window).on('load',function($) {
         $('.add-new-habit-form').show();
         $(this).addClass('clicked');
         $(this).text('');
+    });
+
+    $('.streak.can-edit').mouseover(function () {
+        $(this).addClass('hovering');
+        $(this).text('-');
+    });
+
+    $('.streak.can-edit').mouseout(function () {
+        $(this).removeClass('hovering');
+        $(this).text('');
+    });
+
+    function getLangString(id) {
+        return $('.goodhabits-hidden-lang').data('lang-' + id);
+    }
+
+    function getHiddenData(id) {
+        return $('.goodhabits-hidden-data').data(id);
+    }
+
+    $('.streak.can-edit').click(function () {
+        var confirmMsg = getLangString('confirm_delete');
+        var proceed = confirm(confirmMsg);
+        if (proceed) {
+            var habitId = $(this).data('habit-id');
+            var wwwroot = getHiddenData('wwwroot');
+            var sesskey = getHiddenData('sesskey');
+            var data = {habitId: habitId, sesskey: sesskey};
+            $.post( wwwroot + "/local/good_habits/ajax_delete_habit.php", data)
+                .done(function( data ) {
+                    var habitEntry = $('.goodhabits-container .habit-' + habitId);
+                    habitEntry.hide();
+                });
+        }
     });
 
 

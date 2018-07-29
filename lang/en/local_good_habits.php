@@ -31,3 +31,6 @@ $string['add_new_habit_name'] = 'Name';
 $string['add_new_habit_desc'] = 'Description';
 $string['add_new_habit'] = 'Add New Habit';
 $string['week_displayunit'] = 'WEEK';
+$string['confirm_delete'] = 'Are you sure you want to delete? This will remove the habit for all users';
+$string['settings_heading'] = 'Good Habits';
+$string['settings_desc'] = 'The intention of this plugin is to help track habits over time. <a href="{$a}">Click here to start using.</a>';

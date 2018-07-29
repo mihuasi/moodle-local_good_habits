@@ -33,6 +33,8 @@ require_login();
 
 $context = context_system::instance();
 
+require_capability('local/good_habits:view', $context);
+
 $toDate = optional_param('toDate', null, PARAM_TEXT);
 
 $pageTitle = get_string('plugin_title', 'local_good_habits');
@@ -47,8 +49,8 @@ $PAGE->set_url('/local/good_habits/index.php');
 //$PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin('ui');
 
-$PAGE->requires->js('/local/good_habits/talentgrid/talentgrid-plugin.js?t=' . time(), true);
-$PAGE->requires->js('/local/good_habits/js/calendar.js?t=' . time(), false);
+$PAGE->requires->js('/local/good_habits/talentgrid/talentgrid-plugin.js', true);
+$PAGE->requires->js('/local/good_habits/js/calendar.js', false);
 
 $PAGE->requires->css('/local/good_habits/styles/main.css?t='.time());
 $PAGE->requires->css('/local/good_habits/talentgrid/talentgrid-test.css?t='.time());
@@ -73,7 +75,7 @@ $calendar = new gh\FlexiCalendar($periodDuration, $baseDate, $numEntries);
 $habits = gh\Helper::getHabits();
 
 echo $OUTPUT->header();
-echo $OUTPUT->heading($pageTitle);
+//echo $OUTPUT->heading($pageTitle);
 
 echo $renderer->printHiddenData();
 

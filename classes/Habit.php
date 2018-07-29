@@ -53,4 +53,15 @@ class Habit {
         }
         return $entriesByTime;
     }
+
+    public function delete() {
+        global $DB;
+        $DB->delete_records('gh_habit', array('id' => $this->id));
+        $this->deleteOrphans();
+    }
+
+    private function deleteOrphans() {
+        global $DB;
+        $DB->delete_records('gh_habit_entry', array('habit_id' => $this->id));
+    }
 }

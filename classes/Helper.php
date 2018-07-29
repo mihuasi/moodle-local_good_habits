@@ -121,11 +121,15 @@ class Helper {
     }
 
     public static function checkForNewHabit() {
+        global $PAGE;
+
         $name = optional_param('new-habit-name', '', PARAM_TEXT);
         if (!$name) {
             return null;
         }
         require_sesskey();
+        require_capability('local/good_habits:manage_habits', $PAGE->context);
+
         $desc = optional_param('new-habit-desc', '', PARAM_TEXT);
         global $DB;
 
@@ -141,5 +145,13 @@ class Helper {
         $record->timemodified = $record->timecreated;
 
         $DB->insert_record('gh_habit', $record);
+    }
+
+    public static function langStringAsData($ids, $module = 'local_good_habits') {
+        $data = '';
+        foreach ($ids as $id) {
+            $data .= ' data-lang-' .$id . '="'. get_string($id, $module).'" ';
+        }
+        return $data;
     }
 }

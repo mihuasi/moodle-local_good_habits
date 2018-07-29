@@ -14,17 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * @package   local_good_habits
- * @copyright 2018 Joe Cape
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+defined('MOODLE_INTERNAL') || die;
 
-defined('MOODLE_INTERNAL') || die();
+if ($hassiteconfig) {
+    $pluginname = get_string('pluginname', 'local_good_habits');
+    $settings = new admin_settingpage('local_good_habits', $pluginname);
 
-$plugin->version   = 2018072901;              // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014051220;              // Requires this Moodle version
-$plugin->component = 'local_good_habits'; // Full name of the plugin (used for diagnostics)
+    global $CFG;
+    $link = $CFG->wwwroot . '/local/good_habits';
+    $settings->add(new admin_setting_heading('local_good_habits', get_string('settings_heading', 'local_good_habits'),
+        get_string('settings_desc', 'local_good_habits', $link)));
 
-$plugin->release = '1.0';
-$plugin->maturity = MATURITY_BETA;
+    $ADMIN->add('localplugins', $settings);
+}

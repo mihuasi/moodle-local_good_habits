@@ -1,4 +1,5 @@
 <?php
+
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -20,11 +21,23 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+use local_good_habits as gh;
 
-$plugin->version   = 2018072901;              // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2014051220;              // Requires this Moodle version
-$plugin->component = 'local_good_habits'; // Full name of the plugin (used for diagnostics)
+require_once('../../config.php');
+require_once('classes/Habit.php');
+require_once('classes/Helper.php');
 
-$plugin->release = '1.0';
-$plugin->maturity = MATURITY_BETA;
+define('AJAX_SCRIPT', true);
+
+require_login();
+
+$context = context_system::instance();
+
+require_capability('local/good_habits:view', $context);
+require_capability('local/good_habits:manage_habits', $context);
+
+$habitId = required_param('habitId', PARAM_INT);
+
+$habit = new gh\Habit($habitId);
+
+$habit->delete();
