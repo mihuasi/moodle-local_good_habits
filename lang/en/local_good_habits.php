@@ -34,3 +34,14 @@ $string['week_displayunit'] = 'WEEK';
 $string['confirm_delete'] = 'Are you sure you want to delete? This will remove the habit for all users';
 $string['settings_heading'] = 'Good Habits';
 $string['settings_desc'] = 'The intention of this plugin is to help track habits over time. <a href="{$a}">Click here to start using.</a>';
+
+$string['good_habits:manage_entries'] = 'Manage Entries';
+$string['good_habits:manage_habits'] = 'Manage Habits';
+$string['good_habits:view'] = 'View';
+$string['delete_all_entries'] = 'Delete All My Habit Entries';
+
+$string['privacy:metadata:gh_habit_entry'] = 'Entries in the habit-tracking calendar.';
+$string['privacy:metadata:userid'] = 'The ID of the user with this habit entry.';
+$string['privacy:metadata:x_axis_val'] = 'The X-axis value of this habit entry.';
+$string['privacy:metadata:y_axis_val'] = 'The Y-axis value of this habit entry.';
+$string['local_good_habits_subcontext'] = 'Habit Entries';

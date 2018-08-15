@@ -259,3 +259,7 @@ header .main-menu {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.checkmark.is-selected {
+    border: 1px solid black;
+}

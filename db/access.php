@@ -21,7 +21,8 @@ $capabilities = array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,
         'archetypes' => array(
-            'student' => CAP_ALLOW
+            'student' => CAP_ALLOW,
+            'user' => CAP_ALLOW,
         )
     ),
 
@@ -30,7 +31,8 @@ $capabilities = array(
         'contextlevel' => CONTEXT_SYSTEM,
         'captype' => 'write',
         'archetypes' => array(
-            'student' => CAP_ALLOW
+            'student' => CAP_ALLOW,
+            'user' => CAP_ALLOW,
         )
     ),
 

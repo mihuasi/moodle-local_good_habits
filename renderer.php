@@ -231,4 +231,13 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         return $html;
     }
+
+    public function printDeleteMyEntries() {
+        $submitTxt = get_string('delete_all_entries', 'local_good_habits');
+        $sessionKey = $this->printHiddenSessionKey();
+        $submit = "<br /><br /><br /><input type='submit' value='$submitTxt'> </input>";
+        $action = "<input type='hidden' name='action' value='delete-all-entries'> </input>";
+        $form = "<form class='delete-all-entries-form' method='post'>$sessionKey $action $submit</form>";
+        echo $form;
+    }
 }

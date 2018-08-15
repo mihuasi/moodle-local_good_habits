@@ -68,6 +68,8 @@ if ($toDate) {
 
 gh\Helper::checkForNewHabit();
 
+gh\Helper::checkDeleteEntries();
+
 $baseDate = gh\Helper::getEndPeriodDateTime($periodDuration, $currentDate);
 
 $calendar = new gh\FlexiCalendar($periodDuration, $baseDate, $numEntries);
@@ -75,7 +77,6 @@ $calendar = new gh\FlexiCalendar($periodDuration, $baseDate, $numEntries);
 $habits = gh\Helper::getHabits();
 
 echo $OUTPUT->header();
-//echo $OUTPUT->heading($pageTitle);
 
 echo $renderer->printHiddenData();
 
@@ -86,6 +87,10 @@ $calendarHtml = $renderer->printCalendar($calendar);
 $habitsHtml = $renderer->printHabits($calendar, $habits);
 
 echo $renderer->printModule($calendarHtml, $habitsHtml);
+
+if (has_capability('local/good_habits:manage_entries', $context)) {
+    $renderer->printDeleteMyEntries();
+}
 
 echo $OUTPUT->footer();
 

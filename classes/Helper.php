@@ -147,6 +147,26 @@ class Helper {
         $DB->insert_record('gh_habit', $record);
     }
 
+    public static function checkDeleteEntries() {
+        global $USER, $PAGE;
+        $action = optional_param('action', '', PARAM_TEXT);
+        if ($action == 'delete-all-entries') {
+            require_sesskey();
+            require_capability('local/good_habits:manage_entries', $PAGE->context);
+            static::deleteEntries($USER->id);
+        }
+    }
+
+    public static function deleteAllEntries() {
+        global $DB;
+        $DB->delete_records('gh_habit_entry', array());
+    }
+
+    public static function deleteEntries($userId) {
+        global $DB;
+        $DB->delete_records('gh_habit_entry', array('userid' => $userId));
+    }
+
     public static function langStringAsData($ids, $module = 'local_good_habits') {
         $data = '';
         foreach ($ids as $id) {
