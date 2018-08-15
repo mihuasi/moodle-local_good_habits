@@ -95,7 +95,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $html .= '<div class="streak ' . $canManageClass . '" data-habit-id="'.$habit->id.'"></div>';
 
-        $html .= '    <div class="title"><div class="habit-name">'.$habit->name.'</div><div class="description">'.$habit->description.'</div></div>';
+        $html .= '    <div class="title"><div class="habit-name">'.format_text($habit->name).'</div><div class="description">'.format_text($habit->description).'</div></div>';
 
         $html .= '    <div class="time-line">';
 
