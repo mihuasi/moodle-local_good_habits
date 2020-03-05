@@ -52,7 +52,6 @@ $PAGE->requires->jquery_plugin('ui');
 $PAGE->requires->js('/local/good_habits/talentgrid/talentgrid-plugin.js', true);
 $PAGE->requires->js('/local/good_habits/js/calendar.js', false);
 
-$PAGE->requires->css('/local/good_habits/styles/main.css');
 $PAGE->requires->css('/local/good_habits/talentgrid/talentgrid-test.css');
 
 $renderer = $PAGE->get_renderer('local_good_habits');
