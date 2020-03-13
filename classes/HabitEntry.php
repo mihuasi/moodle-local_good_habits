@@ -26,36 +26,36 @@ abstract class HabitEntry {
 
     protected $habit;
 
-    protected $user_id;
+    protected $userid;
 
-    protected $end_of_period_timestamp;
+    protected $endofperiodtimestamp;
 
-    protected $period_duration;
+    protected $periodduration;
 
-    protected $entryType;
+    protected $entrytype;
 
-    protected $existing_record;
+    protected $existingrecord;
 
     const ENTRY_TYPE_TWO_DIMENSIONAL = 'two-dimensional';
 
-    public function __construct(Habit $habit, $user_id, $end_of_period_timestamp, $period_duration)
+    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration)
     {
         $this->habit = $habit;
-        $this->user_id = $user_id;
-        $this->end_of_period_timestamp = $end_of_period_timestamp;
-        $this->period_duration = $period_duration;
+        $this->userid = $userid;
+        $this->endofperiodtimestamp = $endofperiodtimestamp;
+        $this->periodduration = $periodduration;
         $this->init_existing_record();
     }
 
     public function init_existing_record() {
         global $DB;
-        $this->existing_record = $DB->get_record('gh_habit_entry', array('habit_id' => $this->habit->id, 'userid' => $this->user_id,
-            'entry_type' => $this->entryType, 'period_duration' => $this->period_duration, 'endofperiod_timestamp' => $this->end_of_period_timestamp));
+        $this->existingrecord = $DB->get_record('gh_habit_entry', array('habit_id' => $this->habit->id, 'userid' => $this->userid,
+            'entry_type' => $this->entrytype, 'period_duration' => $this->periodduration, 'endofperiod_timestamp' => $this->endofperiodtimestamp));
     }
 
     public function already_exists() {
 
-        return (boolean) $this->existing_record;
+        return (boolean) $this->existingrecord;
     }
 
     abstract function save();

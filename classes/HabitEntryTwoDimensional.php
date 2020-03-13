@@ -24,28 +24,28 @@ namespace local_good_habits;
 
 class HabitEntryTwoDimensional extends HabitEntry {
 
-    protected $xVal;
+    protected $xval;
 
-    protected $yVal;
+    protected $yval;
 
-    public function __construct(Habit $habit, $user_id, $end_of_period_timestamp, $period_duration, $xVal, $yVal)
+    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration, $xval, $yval)
     {
-        parent::__construct($habit, $user_id, $end_of_period_timestamp, $period_duration);
-        $this->xVal = $xVal;
-        $this->yVal = $yVal;
-        $this->entryType = HabitEntry::ENTRY_TYPE_TWO_DIMENSIONAL;
+        parent::__construct($habit, $userid, $endofperiodtimestamp, $periodduration);
+        $this->xval = $xval;
+        $this->yval = $yval;
+        $this->entrytype = HabitEntry::ENTRY_TYPE_TWO_DIMENSIONAL;
     }
 
     public function save() {
         global $DB;
         $record = new \stdClass();
         $record->habit_id = $this->habit->id;
-        $record->userid = $this->user_id;
-        $record->entry_type = $this->entryType;
-        $record->period_duration = $this->period_duration;
-        $record->endofperiod_timestamp = $this->end_of_period_timestamp;
-        $record->x_axis_val = $this->xVal;
-        $record->y_axis_val = $this->yVal;
+        $record->userid = $this->userid;
+        $record->entry_type = $this->entrytype;
+        $record->period_duration = $this->periodduration;
+        $record->endofperiod_timestamp = $this->endofperiodtimestamp;
+        $record->x_axis_val = $this->xval;
+        $record->y_axis_val = $this->yval;
         $record->timecreated = time();
         $record->timemodified = time();
         $DB->insert_record('gh_habit_entry', $record);
@@ -54,13 +54,13 @@ class HabitEntryTwoDimensional extends HabitEntry {
     public function update()
     {
         global $DB;
-        if (!$this->existing_record) {
+        if (!$this->existingrecord) {
             print_error('existingRecord not found');
         }
-        $this->existing_record->x_axis_val = $this->xVal;
-        $this->existing_record->y_axis_val = $this->yVal;
-        $this->existing_record->timemodified = time();
-        $DB->update_record('gh_habit_entry', $this->existing_record);
+        $this->existingrecord->x_axis_val = $this->xval;
+        $this->existingrecord->y_axis_val = $this->yval;
+        $this->existingrecord->timemodified = time();
+        $DB->update_record('gh_habit_entry', $this->existingrecord);
     }
 
 

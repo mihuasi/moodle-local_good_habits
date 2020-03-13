@@ -24,47 +24,47 @@ namespace local_good_habits;
 
 class FlexiCalendarUnit extends \DateTime {
 
-    private $periodDuration;
+    private $periodduration;
 
-    public function setPeriodDuration($periodDuration) {
-        if (!Helper::validatePeriodDuration($periodDuration)) {
+    public function setPeriodduration($periodduration) {
+        if (!Helper::validatePeriodDuration($periodduration)) {
             print_error('err');
         }
-        $this->periodDuration = $periodDuration;
+        $this->periodduration = $periodduration;
     }
 
     public function displayUnit() {
-        if (empty($this->periodDuration)) {
+        if (empty($this->periodduration)) {
             print_error('must set periodDuration first');
         }
-        $offset = $this->periodDuration - 1;
-        $topLineDateTime = Helper::newDateTime($this, '-' . $offset . ' day');
-        $topLine = $topLineDateTime->format('d/m') . ' - ';
-        $bottomLine = $this->format('d/m');
-        switch ($this->periodDuration) {
+        $offset = $this->periodduration - 1;
+        $toplinedatatime = Helper::newDateTime($this, '-' . $offset . ' day');
+        $topline = $toplinedatatime->format('d/m') . ' - ';
+        $bottomline = $this->format('d/m');
+        switch ($this->periodduration) {
             case 1:
-                $topLine = $this->format('D');
-                $bottomLine = $this->format('d');
+                $topline = $this->format('D');
+                $bottomline = $this->format('d');
                 break;
             case 7:
-                $topLine = get_string('week_displayunit', 'local_good_habits');
-                $bottomLine = $this->format('W');
+                $topline = get_string('week_displayunit', 'local_good_habits');
+                $bottomline = $this->format('W');
                 break;
         }
         $display = array(
-            'topLine' => $topLine,
-            'bottomLine' => $bottomLine,
+            'topLine' => $topline,
+            'bottomLine' => $bottomline,
         );
         return $display;
     }
 
     public function displayMonth($display = false) {
-        $offset = $this->periodDuration;
-        $previousDateTime = Helper::newDateTime($this, '-' . $offset . ' day');
-        $previousMonth = $previousDateTime->format('M');
-        $currentMonth = $this->format('M');
-        if ($display OR $previousMonth != $currentMonth) {
-            return $currentMonth;
+        $offset = $this->periodduration;
+        $previousdatetime = Helper::newDateTime($this, '-' . $offset . ' day');
+        $previousmonth = $previousdatetime->format('M');
+        $currentmonth = $this->format('M');
+        if ($display OR $previousmonth != $currentmonth) {
+            return $currentmonth;
         }
         return '';
     }

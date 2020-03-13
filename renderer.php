@@ -121,7 +121,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $displaySet = $calendar->getDisplaySet();
 
-        $entries = $habit->getEntries($USER->id, $calendar->getPeriodDuration());
+        $entries = $habit->get_entries($USER->id, $calendar->getPeriodDuration());
 
         foreach ($displaySet as $k => $unit) {
             $dataXYtxt = '';

@@ -70,7 +70,7 @@ class FlexiCalendar {
         while (count($displaySet) < $this->numEntries) {
             $unit = new FlexiCalendarUnit();
             $unit->setTimestamp($currentDate->getTimestamp());
-            $unit->setPeriodDuration($this->periodDuration);
+            $unit->setPeriodduration($this->periodDuration);
             $displaySet[] = $unit;
             $currentDate->modify('+'.$this->periodDuration.' day');
         }

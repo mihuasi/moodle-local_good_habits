@@ -43,7 +43,7 @@ class Habit {
         }
     }
 
-    public function getEntries($userId, $period_duration) {
+    public function get_entries($userId, $period_duration) {
         global $DB;
         $entries = $DB->get_records('gh_habit_entry', array('habit_id' => $this->id, 'userid' => $userId, 'period_duration' => $period_duration));
         $entries_by_time = array();
@@ -56,10 +56,10 @@ class Habit {
     public function delete() {
         global $DB;
         $DB->delete_records('gh_habit', array('id' => $this->id));
-        $this->deleteOrphans();
+        $this->delete_orphans();
     }
 
-    private function deleteOrphans() {
+    private function delete_orphans() {
         global $DB;
         $DB->delete_records('gh_habit_entry', array('habit_id' => $this->id));
     }
