@@ -52,8 +52,7 @@ class HabitEntryTwoDimensional extends HabitEntry {
         $DB->insert_record('gh_habit_entry', $record);
     }
 
-    public function update()
-    {
+    public function update() {
         global $DB;
         if (!$this->existingrecord) {
             print_error('existingRecord not found');
