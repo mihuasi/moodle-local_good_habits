@@ -22,6 +22,8 @@
 
 namespace local_good_habits;
 
+defined('MOODLE_INTERNAL') || die();
+
 class Helper {
 
     public static function validate_period_duration($periodduration) {

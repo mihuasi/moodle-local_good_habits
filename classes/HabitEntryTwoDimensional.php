@@ -22,6 +22,8 @@
 
 namespace local_good_habits;
 
+defined('MOODLE_INTERNAL') || die();
+
 class HabitEntryTwoDimensional extends HabitEntry {
 
     protected $xval;

@@ -22,6 +22,8 @@
 
 namespace local_good_habits;
 
+defined('MOODLE_INTERNAL') || die();
+
 abstract class HabitEntry {
 
     protected $habit;
@@ -48,8 +50,13 @@ abstract class HabitEntry {
 
     public function init_existing_record() {
         global $DB;
-        $this->existingrecord = $DB->get_record('gh_habit_entry', array('habit_id' => $this->habit->id, 'userid' => $this->userid,
-            'entry_type' => $this->entrytype, 'period_duration' => $this->periodduration, 'endofperiod_timestamp' => $this->endofperiodtimestamp));
+        $params = array(
+            'habit_id' => $this->habit->id,
+            'userid' => $this->userid,
+            'entry_type' => $this->entrytype,
+            'period_duration' => $this->periodduration,
+            'endofperiod_timestamp' => $this->endofperiodtimestamp);
+        $this->existingrecord = $DB->get_record('gh_habit_entry', $params);
     }
 
     public function already_exists() {
