@@ -47,7 +47,6 @@ class Helper {
         $fraction = $days / $periodduration;
         $endperiodnumdays = floor($fraction) * ($periodduration);
         if ($endperiodnumdays < $days) {
-            $diff = $days - $endperiodnumdays;
             $endperiodnumdays += $periodduration;
         }
         $endperiodtime = static::days_to_time($endperiodnumdays);

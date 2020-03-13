@@ -126,7 +126,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $entries = $habit->get_entries($USER->id, $calendar->get_period_duration());
 
-        foreach ($displayset as $k => $unit) {
+        foreach ($displayset as $unit) {
             $dataxytxt = '';
             $txt = '<div class="empty-day">  </div>';
             if (isset($entries[$unit->getTimestamp()])) {
@@ -140,10 +140,6 @@ class local_good_habits_renderer extends plugin_renderer_base {
         }
 
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
-    }
-
-    private function print_calender_unit(DateTime $datetime) {
-
     }
 
     public function print_module($calendar, $habits) {
