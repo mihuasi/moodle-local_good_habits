@@ -151,7 +151,6 @@ class local_good_habits_renderer extends plugin_renderer_base {
                        <div class=\"clear-both\"></div>
                  $habits
                  </div> ";
-//        $html .= '<div class="talentgrid"></div>';
         return $html;
     }
 
