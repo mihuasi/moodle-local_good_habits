@@ -38,7 +38,7 @@ class FlexiCalendarUnit extends \DateTime {
             print_error('must set periodDuration first');
         }
         $offset = $this->periodduration - 1;
-        $toplinedatatime = Helper::newDateTime($this, '-' . $offset . ' day');
+        $toplinedatatime = Helper::new_date_time($this, '-' . $offset . ' day');
         $topline = $toplinedatatime->format('d/m') . ' - ';
         $bottomline = $this->format('d/m');
         switch ($this->periodduration) {
@@ -60,7 +60,7 @@ class FlexiCalendarUnit extends \DateTime {
 
     public function display_month($display = false) {
         $offset = $this->periodduration;
-        $previousdatetime = Helper::newDateTime($this, '-' . $offset . ' day');
+        $previousdatetime = Helper::new_date_time($this, '-' . $offset . ' day');
         $previousmonth = $previousdatetime->format('M');
         $currentmonth = $this->format('M');
         if ($display OR $previousmonth != $currentmonth) {

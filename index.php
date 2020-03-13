@@ -55,7 +55,7 @@ $PAGE->requires->css('/local/good_habits/talentgrid/talentgrid-test.css');
 
 $renderer = $PAGE->get_renderer('local_good_habits');
 
-$periodDuration = gh\Helper::getPeriodDuration();
+$periodDuration = gh\Helper::get_period_duration();
 $numEntries = 8;
 
 if ($toDate) {

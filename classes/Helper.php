@@ -72,7 +72,7 @@ class Helper {
         return $dt;
     }
 
-    public static function newDateTime(\DateTime $dt, $offset = null) {
+    public static function new_date_time(\DateTime $dt, $offset = null) {
         $newdt = clone $dt;
         if ($offset) {
             $newdt->modify($offset);
@@ -80,7 +80,7 @@ class Helper {
         return $newdt;
     }
 
-    public static function DateTimeToMySQL(\DateTime $dt) {
+    public static function date_time_to_mysql(\DateTime $dt) {
         return $dt->format('Y-m-d');
     }
 
@@ -103,7 +103,7 @@ class Helper {
         return $arr;
     }
 
-    public static function getPeriodDuration() {
+    public static function get_period_duration() {
         $default = 7;
         $userprefname = 'good-habits-period-duration';
         $selected = optional_param('time-period-selector', 0, PARAM_INT);

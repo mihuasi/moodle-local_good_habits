@@ -35,21 +35,21 @@ class FlexiCalendar {
     const DEFAULT_NUM_ENTRIES = 8;
 
     public function __construct($periodduration, \DateTime $basedate, $numentries) {
-        $this->initPeriodDuration($periodduration);
+        $this->init_period_duration($periodduration);
         $this->basedate = $basedate;
         $this->numentries = $numentries;
-        $this->generateDisplaySet();
+        $this->generate_display_set();
     }
 
-    public function getDisplayset() {
+    public function get_display_set() {
         return $this->displayset;
     }
 
-    public function getPeriodduration() {
+    public function get_period_duration() {
         return $this->periodduration;
     }
 
-    private function initPeriodDuration($periodduration) {
+    private function init_period_duration($periodduration) {
         $periodduration = (int) $periodduration;
         if (!Helper::validate_period_duration($periodduration)) {
             print_error('err');
@@ -57,14 +57,14 @@ class FlexiCalendar {
         $this->periodduration = $periodduration;
     }
 
-    private function currentSpan() {
+    private function current_span() {
         return ($this->numentries * $this->periodduration);
     }
 
-    private function generateDisplaySet() {
-        $numdaysago = $this->currentSpan() -1;
-        $startdate = Helper::newDateTime($this->basedate, '-' . $numdaysago . ' day');
-        $currentdate = Helper::newDateTime($startdate);
+    private function generate_display_set() {
+        $numdaysago = $this->current_span() -1;
+        $startdate = Helper::new_date_time($this->basedate, '-' . $numdaysago . ' day');
+        $currentdate = Helper::new_date_time($startdate);
         $displayset = array();
         while (count($displayset) < $this->numentries) {
             $unit = new FlexiCalendarUnit();
@@ -76,15 +76,15 @@ class FlexiCalendar {
         $this->displayset = $displayset;
     }
 
-    public function getBackURL() {
-        $backdate = Helper::newDateTime($this->basedate, '-' . $this->currentSpan() . ' day');
-        $backdatemysql = Helper::DateTimeToMySQL($backdate);
+    public function get_back_url() {
+        $backdate = Helper::new_date_time($this->basedate, '-' . $this->current_span() . ' day');
+        $backdatemysql = Helper::date_time_to_mysql($backdate);
         $url = new \moodle_url('/local/good_habits/index.php', array('toDate' => $backdatemysql));
         return $url;
     }
 
     public function getForwardURL() {
-        $forwarddate = Helper::newDateTime($this->basedate, '+' . $this->currentSpan(). ' day');
+        $forwarddate = Helper::new_date_time($this->basedate, '+' . $this->current_span(). ' day');
         $threshold = Helper::getEndPeriodDateTime($this->periodduration, new \DateTime());
         if ($forwarddate->getTimestamp() > $threshold->getTimestamp()) {
             $forwarddate = $threshold;
@@ -92,7 +92,7 @@ class FlexiCalendar {
                 return null;
             }
         }
-        $forwarddatemysql = Helper::DateTimeToMySQL($forwarddate);
+        $forwarddatemysql = Helper::date_time_to_mysql($forwarddate);
         $url = new \moodle_url('/local/good_habits/index.php', array('toDate' => $forwarddatemysql));
         return $url;
     }

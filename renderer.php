@@ -25,9 +25,9 @@ use local_good_habits as gh;
 class local_good_habits_renderer extends plugin_renderer_base {
 
     public function printCalendar(gh\FlexiCalendar $calendar) {
-        $displaySet = $calendar->getDisplayset();
+        $displaySet = $calendar->get_display_set();
 
-        $periodDuration = $calendar->getPeriodduration();
+        $periodDuration = $calendar->get_period_duration();
 
         $html = "<div class='calendar' data-period-duration='$periodDuration'>";
         $html .= "    <div class='dates'>";
@@ -38,7 +38,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $days = array();
 
-        $backUrl = $calendar->getBackURL();
+        $backUrl = $calendar->get_back_url();
         $forwardUrl = $calendar->getForwardURL();
 
         foreach($displaySet as $k => $unit) {
@@ -119,9 +119,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $html = '';
 
-        $displaySet = $calendar->getDisplayset();
+        $displaySet = $calendar->get_display_set();
 
-        $entries = $habit->get_entries($USER->id, $calendar->getPeriodduration());
+        $entries = $habit->get_entries($USER->id, $calendar->get_period_duration());
 
         foreach ($displaySet as $k => $unit) {
             $dataXYtxt = '';
