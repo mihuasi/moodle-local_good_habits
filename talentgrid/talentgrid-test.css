@@ -68,7 +68,7 @@
     font-size: 22px;
 }
 .path-local-good_habits .talentgrid-y-axis.large-label.small-labels-also-used {
-   left: -120px;
+    left: -120px;
 }
 
 .path-local-good_habits .talentgrid-y-axis.large-label.only-large {
@@ -117,7 +117,7 @@
 }
 
 
-.path-local-good_habits .talentgrid-cell{
+.path-local-good_habits .talentgrid-cell {
     border: solid #d0d0d0 1px;
     table-layout: fixed;
 
