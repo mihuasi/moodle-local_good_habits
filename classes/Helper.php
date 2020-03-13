@@ -60,12 +60,12 @@ class Helper {
     }
 
     public static function unix_days($timestamp) {
-        $numdays = $timestamp/60/60/24;
+        $numdays = $timestamp / 60 / 60 / 24;
         return floor($numdays);
     }
 
     public static function days_to_time($days) {
-        return $days*60*60*24;
+        return $days * 60 * 60 * 24;
     }
 
     public static function timestamp_to_date_time($timestamp) {
@@ -114,7 +114,7 @@ class Helper {
             return $userpref;
         }
         require_sesskey();
-        if (!Helper::validate_period_duration($selected)) {
+        if (!static::validate_period_duration($selected)) {
             print_error('not valid selection');
         }
         set_user_preference($userprefname, $selected);
@@ -163,9 +163,9 @@ class Helper {
         $DB->delete_records('gh_habit_entry', array());
     }
 
-    public static function delete_entries($userId) {
+    public static function delete_entries($userid) {
         global $DB;
-        $DB->delete_records('gh_habit_entry', array('userid' => $userId));
+        $DB->delete_records('gh_habit_entry', array('userid' => $userid));
     }
 
     public static function lang_string_as_data($ids, $module = 'local_good_habits') {

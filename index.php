@@ -67,9 +67,9 @@ gh\Helper::check_for_new_habit();
 
 gh\Helper::check_delete_entries();
 
-$baseDate = gh\Helper::get_end_period_date_time($periodduration, $currentdate);
+$basedate = gh\Helper::get_end_period_date_time($periodduration, $currentdate);
 
-$calendar = new gh\FlexiCalendar($periodduration, $baseDate, $numentries);
+$calendar = new gh\FlexiCalendar($periodduration, $basedate, $numentries);
 
 $habits = gh\Helper::get_habits();
 

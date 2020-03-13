@@ -27,41 +27,41 @@ defined('MOODLE_INTERNAL') || die();
 class local_good_habits_renderer extends plugin_renderer_base {
 
     public function print_calendar(gh\FlexiCalendar $calendar) {
-        $displaySet = $calendar->get_display_set();
+        $displayset = $calendar->get_display_set();
 
-        $periodDuration = $calendar->get_period_duration();
+        $periodduration = $calendar->get_period_duration();
 
-        $html = "<div class='calendar' data-period-duration='$periodDuration'>";
+        $html = "<div class='calendar' data-period-duration='$periodduration'>";
         $html .= "    <div class='dates'>";
 
-        $year = gh\Helper::display_year($displaySet);
+        $year = gh\Helper::display_year($displayset);
 
         $html .= "        <div class='year'>$year</div>";
 
         $days = array();
 
-        $backUrl = $calendar->get_back_url();
-        $forwardUrl = $calendar->get_forward_url();
+        $backurl = $calendar->get_back_url();
+        $forwardurl = $calendar->get_forward_url();
 
-        foreach($displaySet as $k => $unit) {
-            $isFirst = $k == 0;
-            $isLast = $k == (count($displaySet) -1);
-            $month = $unit->display_month($isFirst);
+        foreach($displayset as $k => $unit) {
+            $isfirst = $k == 0;
+            $isLast = $k == (count($displayset) -1);
+            $month = $unit->display_month($isfirst);
             $display = $unit->display_unit();
-            $topLine = $display['topLine'];
+            $topline = $display['topLine'];
 
-            $singleLineDisplay = $topLine . ' ' . $display['bottomLine'];
-            if ($isFirst) {
-                $topLine = $this->print_back_link($backUrl, $topLine);
+            $singlelinedisplay = $topline . ' ' . $display['bottomLine'];
+            if ($isfirst) {
+                $topline = $this->print_back_link($backurl, $topline);
             }
-            if ($isLast && $forwardUrl) {
-                $topLine = $this->print_forward_link($forwardUrl, $topLine);
+            if ($isLast && $forwardurl) {
+                $topline = $this->print_forward_link($forwardurl, $topline);
             }
-            $unitContents = '<div class="top-line">'.$topLine.'</div>';
-            $unitContents .= '<div class="bottom-line">'.$display['bottomLine'].'</div>';
+            $unitcontents = '<div class="top-line">'.$topline.'</div>';
+            $unitcontents .= '<div class="bottom-line">'.$display['bottomLine'].'</div>';
 
-            $monthHtml = ($month) ? '<div class="month">'.$month.'</div>' : '';
-            $day = '<div data-text="'.$singleLineDisplay.'" class="time-unit '.implode(' ', $unit->get_classes()).'">' .$monthHtml .$unitContents.'</div>';
+            $monthhtml = ($month) ? '<div class="month">'.$month.'</div>' : '';
+            $day = '<div data-text="'.$singlelinedisplay.'" class="time-unit '.implode(' ', $unit->get_classes()).'">' .$monthhtml .$unitcontents.'</div>';
             $days[] = $day;
         }
 
@@ -90,11 +90,11 @@ class local_good_habits_renderer extends plugin_renderer_base {
         global $PAGE;
         $html = "<div class='habit habit-".$habit->id."'>";
 
-        $canManage = has_capability('local/good_habits:manage_habits', $PAGE->context);
+        $canmanage = has_capability('local/good_habits:manage_habits', $PAGE->context);
 
-        $canManageClass = ($canManage) ? ' can-edit ' : '';
+        $canmanageclass = ($canmanage) ? ' can-edit ' : '';
 
-        $html .= '<div class="streak ' . $canManageClass . '" data-habit-id="'.$habit->id.'"></div>';
+        $html .= '<div class="streak ' . $canmanageclass . '" data-habit-id="'.$habit->id.'"></div>';
 
         $html .= '    <div class="title"><div class="habit-name">'.format_text($habit->name).'</div><div class="description">'.format_text($habit->description).'</div></div>';
 
@@ -105,7 +105,6 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $html .= '        <div class="clear-both"></div>';
 
         $html .= '    </div>';
-
 
         $html .= '    <div class="clear-both"></div>';
 
@@ -121,21 +120,21 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $html = '';
 
-        $displaySet = $calendar->get_display_set();
+        $displayset = $calendar->get_display_set();
 
         $entries = $habit->get_entries($USER->id, $calendar->get_period_duration());
 
-        foreach ($displaySet as $k => $unit) {
-            $dataXYtxt = '';
+        foreach ($displayset as $k => $unit) {
+            $dataxytxt = '';
             $txt = '<div class="empty-day">  </div>';
             if (isset($entries[$unit->getTimestamp()])) {
                 $entry = $entries[$unit->getTimestamp()];
-                $dataXYtxt = ' data-x="'.$entry->x_axis_val.'" data-y="'.$entry->y_axis_val.'" ';
+                $dataxytxt = ' data-x="'.$entry->x_axis_val.'" data-y="'.$entry->y_axis_val.'" ';
                 $txt = $entry->x_axis_val . ' / ' . $entry->y_axis_val;
             }
-            $canInteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
-            $canInteractClass = ($canInteract) ? '' : ' no-interact ';
-            $html .= '<div class="checkmark ' . $canInteractClass . '" data-timestamp="'.$unit->getTimestamp().'" '.$dataXYtxt.'>'.$txt.'</div>';
+            $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
+            $caninteractclass = ($caninteract) ? '' : ' no-interact ';
+            $html .= '<div class="checkmark ' . $caninteractclass . '" data-timestamp="'.$unit->getTimestamp().'" '.$dataxytxt.'>'.$txt.'</div>';
         }
 
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
@@ -171,44 +170,44 @@ class local_good_habits_renderer extends plugin_renderer_base {
             'can-manage' => (int) has_capability('local/good_habits:manage_habits', $PAGE->context),
         );
 
-        $dataText = '';
+        $datatext = '';
         foreach ($data as $key => $val) {
-            $dataText .= ' data-'.$key.'="'.$val.'" ';
+            $datatext .= ' data-'.$key.'="'.$val.'" ';
         }
 
-        $hiddenData = '<div class="goodhabits-hidden-data" '.$dataText.'></div> ';
+        $hiddendata = '<div class="goodhabits-hidden-data" '.$datatext.'></div> ';
 
-        $langStringIds = array(
+        $langstringids = array(
             'confirm_delete'
         );
-        $dataLang = gh\Helper::lang_string_as_data($langStringIds);
+        $datalang = gh\Helper::lang_string_as_data($langstringids);
 
-        $hiddenLangStrings = '<div class="goodhabits-hidden-lang" '.$dataLang.'></div> ';
+        $hiddenlangstrings = '<div class="goodhabits-hidden-lang" '.$datalang.'></div> ';
 
-        return $hiddenData . $hiddenLangStrings;
+        return $hiddendata . $hiddenlangstrings;
     }
 
     public function time_period_selector($options, $selected) {
-        $optionsTxt = '';
+        $optionstxt = '';
         foreach ($options as $k => $option) {
-            $selectedTxt = ($selected == $k) ? ' selected="selected" ' : '';
-            $optionsTxt .= "<option value='$k' $selectedTxt>$option</option>";
+            $selectedtxt = ($selected == $k) ? ' selected="selected" ' : '';
+            $optionstxt .= "<option value='$k' $selectedtxt>$option</option>";
         }
 
-        $sessionKey = $this->print_hidden_session_key();
+        $sessionkey = $this->print_hidden_session_key();
 
-        $select = " <select name='time-period-selector' autocomplete='off'>$optionsTxt</select>";
+        $select = " <select name='time-period-selector' autocomplete='off'>$optionstxt</select>";
 
-        $submitTxt = get_string('submit_text_change_cal', 'local_good_habits');
+        $submittxt = get_string('submit_text_change_cal', 'local_good_habits');
 
-        $submit = "<input type='submit' value='$submitTxt'> </input>";
-        $html = "<form> $sessionKey {$select} $submit </form>";
+        $submit = "<input type='submit' value='$submittxt'> </input>";
+        $html = "<form> $sessionkey {$select} $submit </form>";
         return $html;
     }
 
     public function print_hidden_session_key() {
-        $sessionKey = sesskey();
-        return "<input type='hidden' name='sesskey' value='$sessionKey'> </input>";
+        $sessionkey = sesskey();
+        return "<input type='hidden' name='sesskey' value='$sessionkey'> </input>";
     }
 
     public function print_add_habit_el() {
@@ -216,29 +215,29 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $plus = "<div class='streak add-new-habit'>+</div>";
 
-        $sessionKey = $this->print_hidden_session_key();
+        $sessionkey = $this->print_hidden_session_key();
 
-        $nameTxt =  get_string('add_new_habit_name', 'local_good_habits');
-        $descTxt =  get_string('add_new_habit_desc', 'local_good_habits');
+        $nametxt =  get_string('add_new_habit_name', 'local_good_habits');
+        $desctxt =  get_string('add_new_habit_desc', 'local_good_habits');
 
-        $habitName = "<label for='new-habit-name'>$nameTxt</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
-        $habitDesc = "<label for='new-habit-desc'>$descTxt</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
+        $habitname = "<label for='new-habit-name'>$nametxt</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
+        $habitdesc = "<label for='new-habit-desc'>$desctxt</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
 
-        $submitTxt = get_string('add_new_habit', 'local_good_habits');
-        $submit = "<input type='submit' value='$submitTxt'> </input>";
+        $submittxt = get_string('add_new_habit', 'local_good_habits');
+        $submit = "<input type='submit' value='$submittxt'> </input>";
 
-        $form = "<form class='add-new-habit-form' method='post'> $sessionKey $habitName $habitDesc $submit</form>";
+        $form = "<form class='add-new-habit-form' method='post'> $sessionkey $habitname $habitdesc $submit</form>";
         $html .= "<div class='habit'>$plus $form</div>";
 
         return $html;
     }
 
     public function print_delete_my_entries() {
-        $submitTxt = get_string('delete_all_entries', 'local_good_habits');
-        $sessionKey = $this->print_hidden_session_key();
-        $submit = "<br /><br /><br /><input type='submit' value='$submitTxt'> </input>";
+        $submittxt = get_string('delete_all_entries', 'local_good_habits');
+        $sessionkey = $this->print_hidden_session_key();
+        $submit = "<br /><br /><br /><input type='submit' value='$submittxt'> </input>";
         $action = "<input type='hidden' name='action' value='delete-all-entries'> </input>";
-        $form = "<form class='delete-all-entries-form' method='post'>$sessionKey $action $submit</form>";
+        $form = "<form class='delete-all-entries-form' method='post'>$sessionkey $action $submit</form>";
         echo $form;
     }
 }
