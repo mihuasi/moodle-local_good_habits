@@ -38,8 +38,7 @@ abstract class HabitEntry {
 
     const ENTRY_TYPE_TWO_DIMENSIONAL = 'two-dimensional';
 
-    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration)
-    {
+    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration) {
         $this->habit = $habit;
         $this->userid = $userid;
         $this->endofperiodtimestamp = $endofperiodtimestamp;

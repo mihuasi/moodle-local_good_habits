@@ -24,9 +24,9 @@ namespace local_good_habits;
 
 class Helper {
 
-    public static function validatePeriodDuration($periodDuration) {
-        $possibleVals = array_keys(static::possiblePeriodDurations());
-        return in_array($periodDuration, $possibleVals) or 1;
+    public static function validatePeriodDuration($periodduration) {
+        $possiblevals = array_keys(static::possiblePeriodDurations());
+        return in_array($periodduration, $possiblevals) or 1;
     }
 
     public static function possiblePeriodDurations() {
@@ -39,27 +39,27 @@ class Helper {
         return $vals;
     }
 
-    public static function getEndPeriodTimestamp($periodDuration, \DateTime $baseDate) {
+    public static function getEndPeriodTimestamp($periodduration, \DateTime $baseDate) {
         $timestamp = $baseDate->getTimestamp();
         $days = static::unixDays($timestamp);
-        $fraction = $days / $periodDuration;
-        $endPeriodNumDays = floor($fraction) * ($periodDuration);
-        if ($endPeriodNumDays < $days) {
-            $diff = $days - $endPeriodNumDays;
-            $endPeriodNumDays += $periodDuration;
+        $fraction = $days / $periodduration;
+        $endperiodnumdays = floor($fraction) * ($periodduration);
+        if ($endperiodnumdays < $days) {
+            $diff = $days - $endperiodnumdays;
+            $endperiodnumdays += $periodduration;
         }
-        $endPeriodTime = static::daysToTime($endPeriodNumDays);
-        return $endPeriodTime;
+        $endperiodtime = static::daysToTime($endperiodnumdays);
+        return $endperiodtime;
     }
 
-    public static function getEndPeriodDateTime($periodDuration, \DateTime $baseDate) {
-        $timestamp = static::getEndPeriodTimestamp($periodDuration, $baseDate);
+    public static function getEndPeriodDateTime($periodduration, \DateTime $basedate) {
+        $timestamp = static::getEndPeriodTimestamp($periodduration, $basedate);
         return static::timestampToDateTime($timestamp);
     }
 
     public static function unixDays($timestamp) {
-        $numDays = $timestamp/60/60/24;
-        return floor($numDays);
+        $numdays = $timestamp/60/60/24;
+        return floor($numdays);
     }
 
     public static function daysToTime($days) {
@@ -73,22 +73,22 @@ class Helper {
     }
 
     public static function newDateTime(\DateTime $dt, $offset = null) {
-        $newDT = clone $dt;
+        $newdt = clone $dt;
         if ($offset) {
-            $newDT->modify($offset);
+            $newdt->modify($offset);
         }
-        return $newDT;
+        return $newdt;
     }
 
     public static function DateTimeToMySQL(\DateTime $dt) {
         return $dt->format('Y-m-d');
     }
 
-    public static function displayYear($displaySet) {
-        $firstUnit = reset($displaySet);
+    public static function displayYear($displayset) {
+        $firstunit = reset($displayset);
 
-        if ($firstUnit->format('Y') != date('Y')) {
-            return $firstUnit->format('Y');
+        if ($firstunit->format('Y') != date('Y')) {
+            return $firstunit->format('Y');
         }
         return '';
     }
@@ -105,17 +105,17 @@ class Helper {
 
     public static function getPeriodDuration() {
         $default = 7;
-        $userPrefName = 'good-habits-period-duration';
+        $userprefname = 'good-habits-period-duration';
         $selected = optional_param('time-period-selector', 0, PARAM_INT);
         if (!$selected) {
-            $userPref = get_user_preferences($userPrefName, $default);
-            return $userPref;
+            $userpref = get_user_preferences($userprefname, $default);
+            return $userpref;
         }
         require_sesskey();
         if (!Helper::validatePeriodDuration($selected)) {
             print_error('not valid selection');
         }
-        set_user_preference($userPrefName, $selected);
+        set_user_preference($userprefname, $selected);
         return $selected;
     }
 

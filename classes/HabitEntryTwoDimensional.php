@@ -28,8 +28,7 @@ class HabitEntryTwoDimensional extends HabitEntry {
 
     protected $yval;
 
-    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration, $xval, $yval)
-    {
+    public function __construct(Habit $habit, $userid, $endofperiodtimestamp, $periodduration, $xval, $yval) {
         parent::__construct($habit, $userid, $endofperiodtimestamp, $periodduration);
         $this->xval = $xval;
         $this->yval = $yval;

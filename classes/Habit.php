@@ -26,8 +26,7 @@ class Habit {
 
     public $id;
 
-    public function __construct($id)
-    {
+    public function __construct($id) {
         $this->id = $id;
         $this->init();
     }
