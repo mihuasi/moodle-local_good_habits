@@ -68,18 +68,18 @@
     font-size: 22px;
 }
 .path-local-good_habits .talentgrid-y-axis.large-label.small-labels-also-used {
-   left:-120px;
+   left: -120px;
 }
 
 .path-local-good_habits .talentgrid-y-axis.large-label.only-large {
     left: -100px;
 }
 
-.path-local-good_habits .talentgrid-x-axis.large-label{
+.path-local-good_habits .talentgrid-x-axis.large-label {
     bottom: -100px;
 }
 
-.path-local-good_habits .talentgrid-x-axis.large-label.only-large{
+.path-local-good_habits .talentgrid-x-axis.large-label.only-large {
     bottom: -60px;
 }
 
@@ -95,7 +95,7 @@
 .path-local-good_habits .talentgrid-x-axis {
     position: absolute;
     bottom: -20px;
-    left: 0px;
+    left: 0;
 }
 
 .path-local-good_habits .rotated-text {
@@ -113,13 +113,13 @@
     transform-origin: 50% 50%;
 
     /* Should be unset in IE9+ I think. */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    filter: progid:dximagetransform.microsoft.basicimage(rotation=3);
 }
 
 
 .path-local-good_habits .talentgrid-cell{
-    border: solid #D0D0D0 1px;
-    table-layout:fixed;
+    border: solid #d0d0d0 1px;
+    table-layout: fixed;
 
     margin: 0;
     padding: 0;
