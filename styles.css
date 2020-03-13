@@ -1,4 +1,5 @@
-.path-local-good_habits .habits, .path-local-good_habits .notes {
+.path-local-good_habits .habits,
+.path-local-good_habits .notes {
     /*width: 640px;*/
     margin: auto;
     /*background: #282C37;*/
@@ -50,19 +51,19 @@
     font-weight: bold;
     position: relative;
     border-radius: 40px;
-    background: #282C37;
+    background: #282c37;
 }
 
 .path-local-good_habits .calendar .time-unit .top-line {
     text-transform: uppercase;
     font-size: 8px;
-    color: #9BAEC8;
+    color: #9baec8;
 }
 
 .path-local-good_habits .calendar .time-unit .bottom-line {
     font-size: 15px;
     line-height: 15px;
-    color: #9BAEC8;
+    color: #9baec8;
 }
 
 .path-local-good_habits .time-unit .month {
