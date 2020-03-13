@@ -22,9 +22,11 @@
 
 use local_good_habits as gh;
 
+defined('MOODLE_INTERNAL') || die();
+
 class local_good_habits_renderer extends plugin_renderer_base {
 
-    public function printCalendar(gh\FlexiCalendar $calendar) {
+    public function print_calendar(gh\FlexiCalendar $calendar) {
         $displaySet = $calendar->get_display_set();
 
         $periodDuration = $calendar->get_period_duration();
@@ -50,10 +52,10 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
             $singleLineDisplay = $topLine . ' ' . $display['bottomLine'];
             if ($isFirst) {
-                $topLine = $this->printBackLink($backUrl, $topLine);
+                $topLine = $this->print_back_link($backUrl, $topLine);
             }
             if ($isLast && $forwardUrl) {
-                $topLine = $this->printForwardLink($forwardUrl, $topLine);
+                $topLine = $this->print_forward_link($forwardUrl, $topLine);
             }
             $unitContents = '<div class="top-line">'.$topLine.'</div>';
             $unitContents .= '<div class="bottom-line">'.$display['bottomLine'].'</div>';
@@ -70,21 +72,21 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $html;
     }
 
-    public function printHabits(gh\FlexiCalendar $calendar, $habits) {
+    public function print_habits(gh\FlexiCalendar $calendar, $habits) {
         global $PAGE;
         $arr = array();
         foreach ($habits as $habit) {
-            $arr[] = $this->printHabit($calendar, $habit);
+            $arr[] = $this->print_habit($calendar, $habit);
         }
 
         if (has_capability('local/good_habits:manage_habits', $PAGE->context)) {
-            $arr[] = $this->printAddHabitEl();
+            $arr[] = $this->print_add_habit_el();
         }
 
         return '<div class="habits">' . implode('', $arr) . '</div>';
     }
 
-    public function printHabit(gh\FlexiCalendar $calendar, gh\Habit $habit) {
+    public function print_habit(gh\FlexiCalendar $calendar, gh\Habit $habit) {
         global $PAGE;
         $html = "<div class='habit habit-".$habit->id."'>";
 
@@ -98,7 +100,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $html .= '    <div class="time-line">';
 
-        $html .= $this->printCheckmarks($calendar, $habit);
+        $html .= $this->print_checkmarks($calendar, $habit);
 
         $html .= '        <div class="clear-both"></div>';
 
@@ -114,7 +116,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $html;
     }
 
-    private function printCheckmarks(gh\FlexiCalendar $calendar, gh\Habit $habit) {
+    private function print_checkmarks(gh\FlexiCalendar $calendar, gh\Habit $habit) {
         global $USER, $PAGE;
 
         $html = '';
@@ -139,11 +141,11 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
     }
 
-    private function printCalendarUnit(DateTime $datetime) {
+    private function print_calender_unit(DateTime $datetime) {
 
     }
 
-    public function printModule($calendar, $habits) {
+    public function print_module($calendar, $habits) {
         $html = "<div class='goodhabits-container'>$calendar
     <div class=\"clear-both\"></div>
  $habits</div> ";
@@ -151,15 +153,15 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $html;
     }
 
-    private function printBackLink(moodle_url $url, $text) {
+    private function print_back_link(moodle_url $url, $text) {
         return html_writer::link($url, '&#8592; ' . $text);
     }
 
-    private function printForwardLink(moodle_url $url, $text) {
+    private function print_forward_link(moodle_url $url, $text) {
         return html_writer::link($url, $text . ' &#8594;');
     }
 
-    public function printHiddenData () {
+    public function print_hidden_data() {
         global $CFG, $PAGE;
 
         $data = array(
@@ -186,14 +188,14 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $hiddenData . $hiddenLangStrings;
     }
 
-    public function timePeriodSelector($options, $selected) {
+    public function time_period_selector($options, $selected) {
         $optionsTxt = '';
         foreach ($options as $k => $option) {
             $selectedTxt = ($selected == $k) ? ' selected="selected" ' : '';
             $optionsTxt .= "<option value='$k' $selectedTxt>$option</option>";
         }
 
-        $sessionKey = $this->printHiddenSessionKey();
+        $sessionKey = $this->print_hidden_session_key();
 
         $select = " <select name='time-period-selector' autocomplete='off'>$optionsTxt</select>";
 
@@ -204,17 +206,17 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $html;
     }
 
-    public function printHiddenSessionKey() {
+    public function print_hidden_session_key() {
         $sessionKey = sesskey();
         return "<input type='hidden' name='sesskey' value='$sessionKey'> </input>";
     }
 
-    public function printAddHabitEl() {
+    public function print_add_habit_el() {
         $html = "<div class='clearboth'></div>";
 
         $plus = "<div class='streak add-new-habit'>+</div>";
 
-        $sessionKey = $this->printHiddenSessionKey();
+        $sessionKey = $this->print_hidden_session_key();
 
         $nameTxt =  get_string('add_new_habit_name', 'local_good_habits');
         $descTxt =  get_string('add_new_habit_desc', 'local_good_habits');
@@ -231,9 +233,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return $html;
     }
 
-    public function printDeleteMyEntries() {
+    public function print_delete_my_entries() {
         $submitTxt = get_string('delete_all_entries', 'local_good_habits');
-        $sessionKey = $this->printHiddenSessionKey();
+        $sessionKey = $this->print_hidden_session_key();
         $submit = "<br /><br /><br /><input type='submit' value='$submitTxt'> </input>";
         $action = "<input type='hidden' name='action' value='delete-all-entries'> </input>";
         $form = "<form class='delete-all-entries-form' method='post'>$sessionKey $action $submit</form>";

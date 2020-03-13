@@ -75,18 +75,18 @@ $habits = gh\Helper::get_habits();
 
 echo $OUTPUT->header();
 
-echo $renderer->printHiddenData();
+echo $renderer->print_hidden_data();
 
-echo $renderer->timePeriodSelector(gh\Helper::possible_period_durations(), $periodduration);
+echo $renderer->time_period_selector(gh\Helper::possible_period_durations(), $periodduration);
 
-$calendarhtml = $renderer->printCalendar($calendar);
+$calendarhtml = $renderer->print_calendar($calendar);
 
-$habitshtml = $renderer->printHabits($calendar, $habits);
+$habitshtml = $renderer->print_habits($calendar, $habits);
 
-echo $renderer->printModule($calendarhtml, $habitshtml);
+echo $renderer->print_module($calendarhtml, $habitshtml);
 
 if (has_capability('local/good_habits:manage_entries', $context)) {
-    $renderer->printDeleteMyEntries();
+    $renderer->print_delete_my_entries();
 }
 
 echo $OUTPUT->footer();
