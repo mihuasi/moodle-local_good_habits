@@ -131,7 +131,8 @@
 }
 
 
-.path-local-good_habits .habits .habit, .path-local-good_habits .notes .habit {
+.path-local-good_habits .habits .habit,
+.path-local-good_habits .notes .habit {
     padding: 10px;
     margin: 2px 0;
     /*background: #313543;*/
@@ -145,7 +146,7 @@
     line-height: 40px;
     border-radius: 10px;
     background: #f9f0d7;
-    color: #9BAEC8;
+    color: #9baec8;
     margin-right: 10px;
     font-size: 40px;
 }
@@ -154,7 +155,8 @@
     cursor: pointer;
 }
 
-.path-local-good_habits .habits .habit .title, .path-local-good_habits .notes .habit .title {
+.path-local-good_habits .habits .habit .title,
+.path-local-good_habits .notes .habit .title {
     float: left;
     width: 140px;
     min-height: 20px;
@@ -195,7 +197,7 @@
 }
 
 .path-local-good_habits .habits .habit .time-line .checkmark .empty-day {
-    color: #9BAEC8;
+    color: #9baec8;
 }
 
 .path-local-good_habits .habits .habit .description {
@@ -241,7 +243,8 @@
     opacity: 1;
 }
 
-.path-local-good_habits .add-new-habit-form label, .path-local-good_habits .add-new-habit-form input {
+.path-local-good_habits .add-new-habit-form label,
+.path-local-good_habits .add-new-habit-form input {
     display:inline;
 }
 
