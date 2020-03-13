@@ -138,7 +138,7 @@
     /*background: #313543;*/
 }
 
-.path-local-good_habits .habits .habit .streak{
+.path-local-good_habits .habits .habit .streak {
     float: left;
     height: 40px;
     width: 40px;
@@ -176,7 +176,7 @@
     width: calc(50px * 32);
 }
 
-.path-local-good_habits .habits .habit .time-line .checkmark{
+.path-local-good_habits .habits .habit .time-line .checkmark {
     float: left;
     height: 40px;
     width: 40px;
@@ -188,7 +188,7 @@
     cursor: pointer;
 }
 
-.path-local-good_habits .habits .habit .time-line .checkmark.no-interact{
+.path-local-good_habits .habits .habit .time-line .checkmark.no-interact {
     cursor: default;
 }
 
@@ -245,7 +245,7 @@
 
 .path-local-good_habits .add-new-habit-form label,
 .path-local-good_habits .add-new-habit-form input {
-    display:inline;
+    display: inline;
 }
 
 .path-local-good_habits .add-new-habit-form {
