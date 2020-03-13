@@ -137,13 +137,13 @@
     border-right: solid black 3px;
 }
 
-.path-local-good_habits .talentgrid-row.final, .talentgrid-row.final td {
+.path-local-good_habits .talentgrid-row.final,
+.path-local-good_habits .talentgrid-row.final td {
     border-bottom: solid black 3px;
 }
 
 .path-local-good_habits .talentgrid-row.emboldened,
-.path-local-good_habits .talentgrid-row.emboldened td
-{
+.path-local-good_habits .talentgrid-row.emboldened td {
     border-top: solid black 3px;
 }
 
@@ -162,18 +162,18 @@
     border: 0;
 }
 
-.path-local-good_habits td.ui-draggable{
-    background-clip: padding-box
+.path-local-good_habits td.ui-draggable {
+    background-clip: padding-box;
 }
 
 .path-local-good_habits .x-band-1.y-band-1 {
-    background-color: #ff9999;
+    background-color: #f99;
 }
 
 .path-local-good_habits .x-band-2.y-band-1,
 .path-local-good_habits .x-band-3.y-band-1,
 .path-local-good_habits .x-band-2.y-band-2 {
-    background-color: #ffff99;
+    background-color: #ff9;
 }
 
 .path-local-good_habits .x-band-3.y-band-3,
@@ -207,12 +207,12 @@
 }
 
 .path-local-good_habits .axis-selector-label {
-    margin-left:5px;
+    margin-left: 5px;
 }
 
 .path-local-good_habits .drag-instructions-arrow {
     font-size: 30px;
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 .path-local-good_habits .drag-instructions {
@@ -237,6 +237,6 @@
 }
 
 .path-local-good_habits * {
- font-size: 100%;
- font-family: Arial;
+    font-size: 100%;
+    font-family: Arial;
 }
