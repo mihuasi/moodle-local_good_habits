@@ -35,8 +35,8 @@ $context = context_system::instance();
 require_capability('local/good_habits:view', $context);
 require_capability('local/good_habits:manage_habits', $context);
 
-$habitId = required_param('habitId', PARAM_INT);
+$habitid = required_param('habitId', PARAM_INT);
 
-$habit = new gh\Habit($habitId);
+$habit = new gh\Habit($habitid);
 
 $habit->delete();

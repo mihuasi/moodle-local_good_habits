@@ -43,9 +43,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $backurl = $calendar->get_back_url();
         $forwardurl = $calendar->get_forward_url();
 
-        foreach($displayset as $k => $unit) {
+        foreach ($displayset as $k => $unit) {
             $isfirst = $k == 0;
-            $isLast = $k == (count($displayset) -1);
+            $islast = $k == (count($displayset) - 1);
             $month = $unit->display_month($isfirst);
             $display = $unit->display_unit();
             $topline = $display['topLine'];
@@ -54,14 +54,16 @@ class local_good_habits_renderer extends plugin_renderer_base {
             if ($isfirst) {
                 $topline = $this->print_back_link($backurl, $topline);
             }
-            if ($isLast && $forwardurl) {
+            if ($islast && $forwardurl) {
                 $topline = $this->print_forward_link($forwardurl, $topline);
             }
             $unitcontents = '<div class="top-line">'.$topline.'</div>';
             $unitcontents .= '<div class="bottom-line">'.$display['bottomLine'].'</div>';
 
             $monthhtml = ($month) ? '<div class="month">'.$month.'</div>' : '';
-            $day = '<div data-text="'.$singlelinedisplay.'" class="time-unit '.implode(' ', $unit->get_classes()).'">' .$monthhtml .$unitcontents.'</div>';
+            $implode = implode(' ', $unit->get_classes());
+            $day = '<div data-text="'.$singlelinedisplay.'" class="time-unit '. $implode .'">';
+            $day .= $monthhtml . $unitcontents.'</div>';
             $days[] = $day;
         }
 
@@ -146,8 +148,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
     public function print_module($calendar, $habits) {
         $html = "<div class='goodhabits-container'>$calendar
-    <div class=\"clear-both\"></div>
- $habits</div> ";
+                       <div class=\"clear-both\"></div>
+                 $habits
+                 </div> ";
 //        $html .= '<div class="talentgrid"></div>';
         return $html;
     }
@@ -217,8 +220,8 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $sessionkey = $this->print_hidden_session_key();
 
-        $nametxt =  get_string('add_new_habit_name', 'local_good_habits');
-        $desctxt =  get_string('add_new_habit_desc', 'local_good_habits');
+        $nametxt = get_string('add_new_habit_name', 'local_good_habits');
+        $desctxt = get_string('add_new_habit_desc', 'local_good_habits');
 
         $habitname = "<label for='new-habit-name'>$nametxt</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
         $habitdesc = "<label for='new-habit-desc'>$desctxt</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
