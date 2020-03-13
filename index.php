@@ -78,7 +78,7 @@ echo $OUTPUT->header();
 
 echo $renderer->printHiddenData();
 
-echo $renderer->timePeriodSelector(gh\Helper::possiblePeriodDurations(), $periodDuration);
+echo $renderer->timePeriodSelector(gh\Helper::possible_period_durations(), $periodDuration);
 
 $calendarHtml = $renderer->printCalendar($calendar);
 

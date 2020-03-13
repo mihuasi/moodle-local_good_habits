@@ -39,7 +39,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $days = array();
 
         $backUrl = $calendar->get_back_url();
-        $forwardUrl = $calendar->getForwardURL();
+        $forwardUrl = $calendar->get_forward_url();
 
         foreach($displaySet as $k => $unit) {
             $isFirst = $k == 0;

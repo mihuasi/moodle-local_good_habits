@@ -27,11 +27,11 @@ defined('MOODLE_INTERNAL') || die();
 class Helper {
 
     public static function validate_period_duration($periodduration) {
-        $possiblevals = array_keys(static::possiblePeriodDurations());
+        $possiblevals = array_keys(static::possible_period_durations());
         return in_array($periodduration, $possiblevals) or 1;
     }
 
-    public static function possiblePeriodDurations() {
+    public static function possible_period_durations() {
         $vals = array(
             1 => get_string('by_day', 'local_good_habits'),
             3 => get_string('x_days', 'local_good_habits', 3),
@@ -41,30 +41,30 @@ class Helper {
         return $vals;
     }
 
-    public static function getEndPeriodTimestamp($periodduration, \DateTime $baseDate) {
+    public static function get_end_period_timestamp($periodduration, \DateTime $baseDate) {
         $timestamp = $baseDate->getTimestamp();
-        $days = static::unixDays($timestamp);
+        $days = static::unix_days($timestamp);
         $fraction = $days / $periodduration;
         $endperiodnumdays = floor($fraction) * ($periodduration);
         if ($endperiodnumdays < $days) {
             $diff = $days - $endperiodnumdays;
             $endperiodnumdays += $periodduration;
         }
-        $endperiodtime = static::daysToTime($endperiodnumdays);
+        $endperiodtime = static::days_to_time($endperiodnumdays);
         return $endperiodtime;
     }
 
     public static function getEndPeriodDateTime($periodduration, \DateTime $basedate) {
-        $timestamp = static::getEndPeriodTimestamp($periodduration, $basedate);
+        $timestamp = static::get_end_period_timestamp($periodduration, $basedate);
         return static::timestampToDateTime($timestamp);
     }
 
-    public static function unixDays($timestamp) {
+    public static function unix_days($timestamp) {
         $numdays = $timestamp/60/60/24;
         return floor($numdays);
     }
 
-    public static function daysToTime($days) {
+    public static function days_to_time($days) {
         return $days*60*60*24;
     }
 

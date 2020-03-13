@@ -64,7 +64,7 @@ class FlexiCalendar {
     }
 
     private function generate_display_set() {
-        $numdaysago = $this->current_span() -1;
+        $numdaysago = $this->current_span() - 1;
         $startdate = Helper::new_date_time($this->basedate, '-' . $numdaysago . ' day');
         $currentdate = Helper::new_date_time($startdate);
         $displayset = array();
@@ -85,7 +85,7 @@ class FlexiCalendar {
         return $url;
     }
 
-    public function getForwardURL() {
+    public function get_forward_url() {
         $forwarddate = Helper::new_date_time($this->basedate, '+' . $this->current_span(). ' day');
         $threshold = Helper::getEndPeriodDateTime($this->periodduration, new \DateTime());
         if ($forwarddate->getTimestamp() > $threshold->getTimestamp()) {
