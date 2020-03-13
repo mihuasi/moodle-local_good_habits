@@ -34,18 +34,17 @@ $context = context_system::instance();
 
 require_capability('local/good_habits:view', $context);
 
-$toDate = optional_param('toDate', null, PARAM_TEXT);
+$todate = optional_param('toDate', null, PARAM_TEXT);
 
-$pageTitle = get_string('plugin_title', 'local_good_habits');
+$pagetitle = get_string('plugin_title', 'local_good_habits');
 
 $PAGE->set_context($context);
 $PAGE->set_pagelayout('standard');
-$PAGE->set_title($pageTitle);
-$PAGE->set_heading($pageTitle);
+$PAGE->set_title($pagetitle);
+$PAGE->set_heading($pagetitle);
 
 $PAGE->set_url('/local/good_habits/index.php');
 
-//$PAGE->requires->jquery();
 $PAGE->requires->jquery_plugin('ui');
 
 $PAGE->requires->js('/local/good_habits/talentgrid/talentgrid-plugin.js', true);
@@ -55,22 +54,22 @@ $PAGE->requires->css('/local/good_habits/talentgrid/talentgrid-test.css');
 
 $renderer = $PAGE->get_renderer('local_good_habits');
 
-$periodDuration = gh\Helper::get_period_duration();
-$numEntries = 8;
+$periodduration = gh\Helper::get_period_duration();
+$numentries = 8;
 
-if ($toDate) {
-    $currentDate = new DateTime($toDate);
+if ($todate) {
+    $currentdate = new DateTime($todate);
 } else {
-    $currentDate = new DateTime();
+    $currentdate = new DateTime();
 }
 
 gh\Helper::check_for_new_habit();
 
 gh\Helper::check_delete_entries();
 
-$baseDate = gh\Helper::get_end_period_date_time($periodDuration, $currentDate);
+$baseDate = gh\Helper::get_end_period_date_time($periodduration, $currentdate);
 
-$calendar = new gh\FlexiCalendar($periodDuration, $baseDate, $numEntries);
+$calendar = new gh\FlexiCalendar($periodduration, $baseDate, $numentries);
 
 $habits = gh\Helper::get_habits();
 
@@ -78,13 +77,13 @@ echo $OUTPUT->header();
 
 echo $renderer->printHiddenData();
 
-echo $renderer->timePeriodSelector(gh\Helper::possible_period_durations(), $periodDuration);
+echo $renderer->timePeriodSelector(gh\Helper::possible_period_durations(), $periodduration);
 
-$calendarHtml = $renderer->printCalendar($calendar);
+$calendarhtml = $renderer->printCalendar($calendar);
 
-$habitsHtml = $renderer->printHabits($calendar, $habits);
+$habitshtml = $renderer->printHabits($calendar, $habits);
 
-echo $renderer->printModule($calendarHtml, $habitsHtml);
+echo $renderer->printModule($calendarhtml, $habitshtml);
 
 if (has_capability('local/good_habits:manage_entries', $context)) {
     $renderer->printDeleteMyEntries();

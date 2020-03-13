@@ -39,7 +39,7 @@ $context = context_system::instance();
 require_capability('local/good_habits:view', $context);
 require_capability('local/good_habits:manage_entries', $context);
 
-$habitId = required_param('habitId', PARAM_INT);
+$habitid = required_param('habitId', PARAM_INT);
 $timestamp = required_param('timestamp', PARAM_INT);
 $duration = required_param('periodDuration', PARAM_INT);
 $x = required_param('x', PARAM_INT);
@@ -47,7 +47,7 @@ $y = required_param('y', PARAM_INT);
 
 require_sesskey();
 
-$habit = new gh\Habit($habitId);
+$habit = new gh\Habit($habitid);
 
 $entry = new gh\HabitEntryTwoDimensional($habit, $USER->id, $timestamp, $duration, $x, $y);
 
