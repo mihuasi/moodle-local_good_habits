@@ -64,15 +64,15 @@ if ($toDate) {
     $currentDate = new DateTime();
 }
 
-gh\Helper::checkForNewHabit();
+gh\Helper::check_for_new_habit();
 
-gh\Helper::checkDeleteEntries();
+gh\Helper::check_delete_entries();
 
-$baseDate = gh\Helper::getEndPeriodDateTime($periodDuration, $currentDate);
+$baseDate = gh\Helper::get_end_period_date_time($periodDuration, $currentDate);
 
 $calendar = new gh\FlexiCalendar($periodDuration, $baseDate, $numEntries);
 
-$habits = gh\Helper::getHabits();
+$habits = gh\Helper::get_habits();
 
 echo $OUTPUT->header();
 

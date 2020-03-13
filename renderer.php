@@ -32,7 +32,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $html = "<div class='calendar' data-period-duration='$periodDuration'>";
         $html .= "    <div class='dates'>";
 
-        $year = gh\Helper::displayYear($displaySet);
+        $year = gh\Helper::display_year($displaySet);
 
         $html .= "        <div class='year'>$year</div>";
 
@@ -179,7 +179,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $langStringIds = array(
             'confirm_delete'
         );
-        $dataLang = gh\Helper::langStringAsData($langStringIds);
+        $dataLang = gh\Helper::lang_string_as_data($langStringIds);
 
         $hiddenLangStrings = '<div class="goodhabits-hidden-lang" '.$dataLang.'></div> ';
 

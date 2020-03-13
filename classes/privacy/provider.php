@@ -82,11 +82,11 @@ class provider implements
     }
 
     public static function delete_data_for_all_users_in_context(\context $context) {
-        Helper::deleteAllEntries();
+        Helper::delete_all_entries();
     }
 
     public static function delete_data_for_user(approved_contextlist $contextlist) {
         $userid = $contextlist->get_user()->id;
-        Helper::deleteEntries($userid);
+        Helper::delete_entries($userid);
     }
 }

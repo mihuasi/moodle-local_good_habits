@@ -41,8 +41,8 @@ class Helper {
         return $vals;
     }
 
-    public static function get_end_period_timestamp($periodduration, \DateTime $baseDate) {
-        $timestamp = $baseDate->getTimestamp();
+    public static function get_end_period_timestamp($periodduration, \DateTime $basedate) {
+        $timestamp = $basedate->getTimestamp();
         $days = static::unix_days($timestamp);
         $fraction = $days / $periodduration;
         $endperiodnumdays = floor($fraction) * ($periodduration);
@@ -54,9 +54,9 @@ class Helper {
         return $endperiodtime;
     }
 
-    public static function getEndPeriodDateTime($periodduration, \DateTime $basedate) {
+    public static function get_end_period_date_time($periodduration, \DateTime $basedate) {
         $timestamp = static::get_end_period_timestamp($periodduration, $basedate);
-        return static::timestampToDateTime($timestamp);
+        return static::timestamp_to_date_time($timestamp);
     }
 
     public static function unix_days($timestamp) {
@@ -68,7 +68,7 @@ class Helper {
         return $days*60*60*24;
     }
 
-    public static function timestampToDateTime($timestamp) {
+    public static function timestamp_to_date_time($timestamp) {
         $dt = new \DateTime();
         $dt->setTimestamp($timestamp);
         return $dt;
@@ -86,7 +86,7 @@ class Helper {
         return $dt->format('Y-m-d');
     }
 
-    public static function displayYear($displayset) {
+    public static function display_year($displayset) {
         $firstunit = reset($displayset);
 
         if ($firstunit->format('Y') != date('Y')) {
@@ -95,7 +95,7 @@ class Helper {
         return '';
     }
 
-    public static function getHabits() {
+    public static function get_habits() {
         global $DB;
         $records = $DB->get_records('gh_habit');
         $arr = array();
@@ -121,7 +121,7 @@ class Helper {
         return $selected;
     }
 
-    public static function checkForNewHabit() {
+    public static function check_for_new_habit() {
         global $PAGE;
 
         $name = optional_param('new-habit-name', '', PARAM_TEXT);
@@ -148,27 +148,27 @@ class Helper {
         $DB->insert_record('gh_habit', $record);
     }
 
-    public static function checkDeleteEntries() {
+    public static function check_delete_entries() {
         global $USER, $PAGE;
         $action = optional_param('action', '', PARAM_TEXT);
         if ($action == 'delete-all-entries') {
             require_sesskey();
             require_capability('local/good_habits:manage_entries', $PAGE->context);
-            static::deleteEntries($USER->id);
+            static::delete_entries($USER->id);
         }
     }
 
-    public static function deleteAllEntries() {
+    public static function delete_all_entries() {
         global $DB;
         $DB->delete_records('gh_habit_entry', array());
     }
 
-    public static function deleteEntries($userId) {
+    public static function delete_entries($userId) {
         global $DB;
         $DB->delete_records('gh_habit_entry', array('userid' => $userId));
     }
 
-    public static function langStringAsData($ids, $module = 'local_good_habits') {
+    public static function lang_string_as_data($ids, $module = 'local_good_habits') {
         $data = '';
         foreach ($ids as $id) {
             $data .= ' data-lang-' .$id . '="'. get_string($id, $module).'" ';

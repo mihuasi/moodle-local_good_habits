@@ -87,7 +87,7 @@ class FlexiCalendar {
 
     public function get_forward_url() {
         $forwarddate = Helper::new_date_time($this->basedate, '+' . $this->current_span(). ' day');
-        $threshold = Helper::getEndPeriodDateTime($this->periodduration, new \DateTime());
+        $threshold = Helper::get_end_period_date_time($this->periodduration, new \DateTime());
         if ($forwarddate->getTimestamp() > $threshold->getTimestamp()) {
             $forwarddate = $threshold;
             if ($forwarddate->getTimestamp() <= $this->basedate->getTimestamp()) {
