@@ -49,7 +49,7 @@ class HabitEntryTwoDimensional extends HabitEntry {
         $record->y_axis_val = $this->yval;
         $record->timecreated = time();
         $record->timemodified = time();
-        $DB->insert_record('gh_habit_entry', $record);
+        $DB->insert_record('local_good_habit_entry', $record);
     }
 
     public function update() {
@@ -60,7 +60,7 @@ class HabitEntryTwoDimensional extends HabitEntry {
         $this->existingrecord->x_axis_val = $this->xval;
         $this->existingrecord->y_axis_val = $this->yval;
         $this->existingrecord->timemodified = time();
-        $DB->update_record('gh_habit_entry', $this->existingrecord);
+        $DB->update_record('local_good_habit_entry', $this->existingrecord);
     }
 
 

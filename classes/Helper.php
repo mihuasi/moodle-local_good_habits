@@ -96,7 +96,7 @@ class Helper {
 
     public static function get_habits() {
         global $DB;
-        $records = $DB->get_records('gh_habit');
+        $records = $DB->get_records('local_good_habit_item');
         $arr = array();
         foreach ($records as $k => $habit) {
             $arr[$k] = new Habit($habit->id);
@@ -133,7 +133,7 @@ class Helper {
         $desc = optional_param('new-habit-desc', '', PARAM_TEXT);
         global $DB;
 
-        if ($DB->record_exists('gh_habit', array('name' => $name))) {
+        if ($DB->record_exists('local_good_habit_item', array('name' => $name))) {
             print_error('Habit already exists with name ' . $name);
         }
         $record = new \stdClass();
@@ -144,7 +144,7 @@ class Helper {
         $record->timecreated = time();
         $record->timemodified = $record->timecreated;
 
-        $DB->insert_record('gh_habit', $record);
+        $DB->insert_record('local_good_habit_item', $record);
     }
 
     public static function check_delete_entries() {
@@ -159,12 +159,12 @@ class Helper {
 
     public static function delete_all_entries() {
         global $DB;
-        $DB->delete_records('gh_habit_entry', array());
+        $DB->delete_records('local_good_habit_entry', array());
     }
 
     public static function delete_entries($userid) {
         global $DB;
-        $DB->delete_records('gh_habit_entry', array('userid' => $userid));
+        $DB->delete_records('local_good_habit_entry', array('userid' => $userid));
     }
 
     public static function lang_string_as_data($ids, $module = 'local_good_habits') {

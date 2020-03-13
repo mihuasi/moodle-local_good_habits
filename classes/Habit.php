@@ -35,7 +35,7 @@ class Habit {
 
     private function init() {
         global $DB;
-        $habitrecord = $DB->get_record('gh_habit', array('id' => $this->id));
+        $habitrecord = $DB->get_record('local_good_habit_item', array('id' => $this->id));
         if (!$habitrecord) {
             print_error('err');
         }
@@ -47,7 +47,7 @@ class Habit {
     public function get_entries($userid, $periodduration) {
         global $DB;
         $params = array('habit_id' => $this->id, 'userid' => $userid, 'period_duration' => $periodduration);
-        $entries = $DB->get_records('gh_habit_entry', $params);
+        $entries = $DB->get_records('local_good_habit_entry', $params);
         $entriesbytime = array();
         foreach ($entries as $entry) {
             $entriesbytime[$entry->endofperiod_timestamp] = $entry;
@@ -57,12 +57,12 @@ class Habit {
 
     public function delete() {
         global $DB;
-        $DB->delete_records('gh_habit', array('id' => $this->id));
+        $DB->delete_records('local_good_habit_item', array('id' => $this->id));
         $this->delete_orphans();
     }
 
     private function delete_orphans() {
         global $DB;
-        $DB->delete_records('gh_habit_entry', array('habit_id' => $this->id));
+        $DB->delete_records('local_good_habit_entry', array('habit_id' => $this->id));
     }
 }
