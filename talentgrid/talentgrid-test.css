@@ -27,9 +27,9 @@
     overflow-y: scroll;
 }
 
-.path-local-good_habits .table-plus-axis.report{
+.path-local-good_habits .table-plus-axis.report {
     width: 338px;
-    float:left;
+    float: left;
 }
 
 .path-local-good_habits .table-plus-axis {
@@ -43,12 +43,11 @@
 }
 
 .path-local-good_habits .mform fieldset#id_question div {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .path-local-good_habits .talentgrid-token {
-    cursor:pointer;
-/*    width:32px;
-    height:32px;*/
+    cursor: pointer;
     z-index: 1;
 }
 
@@ -60,7 +59,7 @@
 
 .path-local-good_habits .talentgrid-y-axis {
     position: absolute;
-    left:-40px;
+    left: -40px;
     top: 144px;
 }
 
