@@ -51,7 +51,7 @@ $habit = new gh\Habit($habitId);
 
 $entry = new gh\HabitEntryTwoDimensional($habit, $USER->id, $timestamp, $duration, $x, $y);
 
-if ($entry->alreadyExists()) {
+if ($entry->already_exists()) {
     $entry->update();
 } else {
     $entry->save();

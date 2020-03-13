@@ -28,9 +28,9 @@ class HabitEntryTwoDimensional extends HabitEntry {
 
     protected $yVal;
 
-    public function __construct(Habit $habit, $userId, $endOfPeriodTimestamp, $periodDuration, $xVal, $yVal)
+    public function __construct(Habit $habit, $user_id, $end_of_period_timestamp, $period_duration, $xVal, $yVal)
     {
-        parent::__construct($habit, $userId, $endOfPeriodTimestamp, $periodDuration);
+        parent::__construct($habit, $user_id, $end_of_period_timestamp, $period_duration);
         $this->xVal = $xVal;
         $this->yVal = $yVal;
         $this->entryType = HabitEntry::ENTRY_TYPE_TWO_DIMENSIONAL;
@@ -40,10 +40,10 @@ class HabitEntryTwoDimensional extends HabitEntry {
         global $DB;
         $record = new \stdClass();
         $record->habit_id = $this->habit->id;
-        $record->userid = $this->userId;
+        $record->userid = $this->user_id;
         $record->entry_type = $this->entryType;
-        $record->period_duration = $this->periodDuration;
-        $record->endofperiod_timestamp = $this->endOfPeriodTimestamp;
+        $record->period_duration = $this->period_duration;
+        $record->endofperiod_timestamp = $this->end_of_period_timestamp;
         $record->x_axis_val = $this->xVal;
         $record->y_axis_val = $this->yVal;
         $record->timecreated = time();
@@ -54,13 +54,13 @@ class HabitEntryTwoDimensional extends HabitEntry {
     public function update()
     {
         global $DB;
-        if (!$this->existingRecord) {
+        if (!$this->existing_record) {
             print_error('existingRecord not found');
         }
-        $this->existingRecord->x_axis_val = $this->xVal;
-        $this->existingRecord->y_axis_val = $this->yVal;
-        $this->existingRecord->timemodified = time();
-        $DB->update_record('gh_habit_entry', $this->existingRecord);
+        $this->existing_record->x_axis_val = $this->xVal;
+        $this->existing_record->y_axis_val = $this->yVal;
+        $this->existing_record->timemodified = time();
+        $DB->update_record('gh_habit_entry', $this->existing_record);
     }
 
 

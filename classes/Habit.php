@@ -34,23 +34,23 @@ class Habit {
 
     private function init() {
         global $DB;
-        $habitRecord = $DB->get_record('gh_habit', array('id' => $this->id));
-        if (!$habitRecord) {
+        $habit_record = $DB->get_record('gh_habit', array('id' => $this->id));
+        if (!$habit_record) {
             print_error('err');
         }
-        foreach ($habitRecord as $k => $v) {
+        foreach ($habit_record as $k => $v) {
             $this->{$k} = $v;
         }
     }
 
-    public function getEntries($userId, $periodDuration) {
+    public function getEntries($userId, $period_duration) {
         global $DB;
-        $entries = $DB->get_records('gh_habit_entry', array('habit_id' => $this->id, 'userid' => $userId, 'period_duration' => $periodDuration));
-        $entriesByTime = array();
+        $entries = $DB->get_records('gh_habit_entry', array('habit_id' => $this->id, 'userid' => $userId, 'period_duration' => $period_duration));
+        $entries_by_time = array();
         foreach ($entries as $entry) {
-            $entriesByTime[$entry->endofperiod_timestamp] = $entry;
+            $entries_by_time[$entry->endofperiod_timestamp] = $entry;
         }
-        return $entriesByTime;
+        return $entries_by_time;
     }
 
     public function delete() {
