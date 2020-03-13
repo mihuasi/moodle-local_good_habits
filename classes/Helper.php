@@ -24,7 +24,7 @@ namespace local_good_habits;
 
 class Helper {
 
-    public static function validatePeriodDuration($periodduration) {
+    public static function validate_period_duration($periodduration) {
         $possiblevals = array_keys(static::possiblePeriodDurations());
         return in_array($periodduration, $possiblevals) or 1;
     }
@@ -112,7 +112,7 @@ class Helper {
             return $userpref;
         }
         require_sesskey();
-        if (!Helper::validatePeriodDuration($selected)) {
+        if (!Helper::validate_period_duration($selected)) {
             print_error('not valid selection');
         }
         set_user_preference($userprefname, $selected);

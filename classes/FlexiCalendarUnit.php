@@ -26,14 +26,14 @@ class FlexiCalendarUnit extends \DateTime {
 
     private $periodduration;
 
-    public function setPeriodduration($periodduration) {
-        if (!Helper::validatePeriodDuration($periodduration)) {
+    public function set_period_duration($periodduration) {
+        if (!Helper::validate_period_duration($periodduration)) {
             print_error('err');
         }
         $this->periodduration = $periodduration;
     }
 
-    public function displayUnit() {
+    public function display_unit() {
         if (empty($this->periodduration)) {
             print_error('must set periodDuration first');
         }
@@ -58,7 +58,7 @@ class FlexiCalendarUnit extends \DateTime {
         return $display;
     }
 
-    public function displayMonth($display = false) {
+    public function display_month($display = false) {
         $offset = $this->periodduration;
         $previousdatetime = Helper::newDateTime($this, '-' . $offset . ' day');
         $previousmonth = $previousdatetime->format('M');
@@ -69,7 +69,7 @@ class FlexiCalendarUnit extends \DateTime {
         return '';
     }
 
-    public function getClasses() {
+    public function get_classes() {
         $month = $this->format('F');
         $month = strtolower($month);
         $classes = array($month, 'time-unit-' . $this->getTimestamp());

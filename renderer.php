@@ -44,8 +44,8 @@ class local_good_habits_renderer extends plugin_renderer_base {
         foreach($displaySet as $k => $unit) {
             $isFirst = $k == 0;
             $isLast = $k == (count($displaySet) -1);
-            $month = $unit->displayMonth($isFirst);
-            $display = $unit->displayUnit();
+            $month = $unit->display_month($isFirst);
+            $display = $unit->display_unit();
             $topLine = $display['topLine'];
 
             $singleLineDisplay = $topLine . ' ' . $display['bottomLine'];
@@ -59,7 +59,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $unitContents .= '<div class="bottom-line">'.$display['bottomLine'].'</div>';
 
             $monthHtml = ($month) ? '<div class="month">'.$month.'</div>' : '';
-            $day = '<div data-text="'.$singleLineDisplay.'" class="time-unit '.implode(' ', $unit->getClasses()).'">' .$monthHtml .$unitContents.'</div>';
+            $day = '<div data-text="'.$singleLineDisplay.'" class="time-unit '.implode(' ', $unit->get_classes()).'">' .$monthHtml .$unitContents.'</div>';
             $days[] = $day;
         }
 

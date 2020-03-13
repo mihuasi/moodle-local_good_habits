@@ -57,6 +57,6 @@ abstract class HabitEntry {
         return (boolean) $this->existingrecord;
     }
 
-    abstract function save();
-    abstract function update();
+    abstract public function save();
+    abstract public function update();
 }

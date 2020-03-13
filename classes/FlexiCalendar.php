@@ -51,7 +51,7 @@ class FlexiCalendar {
 
     private function initPeriodDuration($periodduration) {
         $periodduration = (int) $periodduration;
-        if (!Helper::validatePeriodDuration($periodduration)) {
+        if (!Helper::validate_period_duration($periodduration)) {
             print_error('err');
         }
         $this->periodduration = $periodduration;
@@ -69,7 +69,7 @@ class FlexiCalendar {
         while (count($displayset) < $this->numentries) {
             $unit = new FlexiCalendarUnit();
             $unit->setTimestamp($currentdate->getTimestamp());
-            $unit->setPeriodduration($this->periodduration);
+            $unit->set_period_duration($this->periodduration);
             $displayset[] = $unit;
             $currentdate->modify('+'.$this->periodduration.' day');
         }
