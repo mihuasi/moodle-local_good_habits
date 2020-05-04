@@ -74,7 +74,7 @@ jQuery(window).on('load',function($) {
                     yDefault: 'Select',
             };
 
-            if (x !== undefined && y !== undefined ) {
+            if (x && y) {
 
                 options.prePlaceDraggableIcon = true;
                 options.prePlaceCoordinates = { // Co-ordinates used for pre-placed token.
@@ -156,8 +156,8 @@ jQuery(window).on('load',function($) {
 
         var el = $(this);
 
-        var x = el.data('x');
-        var y = el.data('y');
+        x = parseInt(el.attr("data-x"));
+        y = parseInt(el.attr("data-y"));
 
         el.addClass('is-selected');
         $('.goodhabits-container').addClass('grid-is-open');
