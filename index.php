@@ -27,6 +27,7 @@ require_once('classes/Habit.php');
 require_once('classes/FlexiCalendar.php');
 require_once('classes/FlexiCalendarUnit.php');
 require_once('classes/Helper.php');
+require_once('classes/IndexHelper.php');
 
 require_login();
 
@@ -63,15 +64,15 @@ if ($todate) {
     $currentdate = new DateTime();
 }
 
-gh\Helper::check_for_new_habit();
+gh\IndexHelper::check_for_new_habit();
 
-gh\Helper::check_delete_entries();
+gh\IndexHelper::check_delete_entries();
 
 $basedate = gh\Helper::get_end_period_date_time($periodduration, $currentdate);
 
 $calendar = new gh\FlexiCalendar($periodduration, $basedate, $numentries);
 
-$habits = gh\Helper::get_habits();
+$habits = gh\IndexHelper::get_habits();
 
 echo $OUTPUT->header();
 

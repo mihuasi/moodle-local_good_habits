@@ -94,16 +94,6 @@ class Helper {
         return '';
     }
 
-    public static function get_habits() {
-        global $DB;
-        $records = $DB->get_records('local_good_habits_item');
-        $arr = array();
-        foreach ($records as $k => $habit) {
-            $arr[$k] = new Habit($habit->id);
-        }
-        return $arr;
-    }
-
     public static function get_period_duration() {
         $default = 7;
         $userprefname = 'good-habits-period-duration';
@@ -118,43 +108,6 @@ class Helper {
         }
         set_user_preference($userprefname, $selected);
         return $selected;
-    }
-
-    public static function check_for_new_habit() {
-        global $PAGE;
-
-        $name = optional_param('new-habit-name', '', PARAM_TEXT);
-        if (!$name) {
-            return null;
-        }
-        require_sesskey();
-        require_capability('local/good_habits:manage_habits', $PAGE->context);
-
-        $desc = optional_param('new-habit-desc', '', PARAM_TEXT);
-        global $DB;
-
-        if ($DB->record_exists('local_good_habits_item', array('name' => $name))) {
-            print_error('Habit already exists with name ' . $name);
-        }
-        $record = new \stdClass();
-        $record->gh_id = 0;
-        $record->name = $name;
-        $record->description = $desc;
-        $record->colour = '';
-        $record->timecreated = time();
-        $record->timemodified = $record->timecreated;
-
-        $DB->insert_record('local_good_habits_item', $record);
-    }
-
-    public static function check_delete_entries() {
-        global $USER, $PAGE;
-        $action = optional_param('action', '', PARAM_TEXT);
-        if ($action == 'delete-all-entries') {
-            require_sesskey();
-            require_capability('local/good_habits:manage_entries', $PAGE->context);
-            static::delete_entries($USER->id);
-        }
     }
 
     public static function delete_all_entries() {
