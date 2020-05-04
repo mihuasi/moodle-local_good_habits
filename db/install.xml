@@ -4,7 +4,7 @@
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="local_good_habit_item" COMMENT="Each record...">
+    <TABLE NAME="local_good_habits_item" COMMENT="Each record...">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="gh_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
@@ -18,7 +18,7 @@
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
     </TABLE>
-    <TABLE NAME="local_good_habit_entry" COMMENT="Each record...">
+    <TABLE NAME="local_good_habits_entry" COMMENT="Each record...">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="habit_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
@@ -33,7 +33,7 @@
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-        <KEY NAME="entry_habitid" TYPE="foreign" FIELDS="habit_id" REFTABLE="local_good_habit_item" REFFIELDS="id" COMMENT="."/>
+        <KEY NAME="entry_habitid" TYPE="foreign" FIELDS="habit_id" REFTABLE="local_good_habits_item" REFFIELDS="id" COMMENT="."/>
         <KEY NAME="entry_userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id" COMMENT="."/>
       </KEYS>
     </TABLE>

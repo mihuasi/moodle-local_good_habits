@@ -39,7 +39,7 @@ $string['good_habits:manage_habits'] = 'Manage Habits';
 $string['good_habits:view'] = 'View';
 $string['delete_all_entries'] = 'Delete All My Habit Entries';
 
-$string['privacy:metadata:local_good_habit_entry'] = 'Entries in the habit-tracking calendar.';
+$string['privacy:metadata:local_good_habits_entry'] = 'Entries in the habit-tracking calendar.';
 $string['privacy:metadata:userid'] = 'The ID of the user with this habit entry.';
 $string['privacy:metadata:x_axis_val'] = 'The X-axis value of this habit entry.';
 $string['privacy:metadata:y_axis_val'] = 'The Y-axis value of this habit entry.';

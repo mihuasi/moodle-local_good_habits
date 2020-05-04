@@ -41,14 +41,14 @@ class provider implements
     public static function get_metadata(collection $collection) : collection {
 
         $collection->add_database_table(
-            'local_good_habit_entry',
+            'local_good_habits_entry',
             [
-                'userid' => 'privacy:metadata:local_good_habit_entry:userid',
-                'habit_id' => 'privacy:metadata:local_good_habit_entry:habit_id',
-                'x_axis_val' => 'privacy:metadata:local_good_habit_entry:x_axis_val',
-                'y_axis_val' => 'privacy:metadata:local_good_habit_entry:y_axis_val',
+                'userid' => 'privacy:metadata:local_good_habits_entry:userid',
+                'habit_id' => 'privacy:metadata:local_good_habits_entry:habit_id',
+                'x_axis_val' => 'privacy:metadata:local_good_habits_entry:x_axis_val',
+                'y_axis_val' => 'privacy:metadata:local_good_habits_entry:y_axis_val',
             ],
-            'privacy:metadata:local_good_habit_entry'
+            'privacy:metadata:local_good_habits_entry'
         );
 
         return $collection;
@@ -69,7 +69,7 @@ class provider implements
 
     private static function export($context) {
         global $DB, $USER;
-        $entries = $DB->get_records('local_good_habit_entry', array('userid' => $USER->id));
+        $entries = $DB->get_records('local_good_habits_entry', array('userid' => $USER->id));
 
         $subcontext = array();
 

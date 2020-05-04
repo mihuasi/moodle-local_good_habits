@@ -56,7 +56,7 @@ abstract class HabitEntry {
             'entry_type' => $this->entrytype,
             'period_duration' => $this->periodduration,
             'endofperiod_timestamp' => $this->endofperiodtimestamp);
-        $this->existingrecord = $DB->get_record('local_good_habit_entry', $params);
+        $this->existingrecord = $DB->get_record('local_good_habits_entry', $params);
     }
 
     public function already_exists() {
