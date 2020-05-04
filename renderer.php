@@ -99,7 +99,8 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $html .= '<div class="streak ' . $canmanageclass . '" data-habit-id="'.$habit->id.'"></div>';
 
-        $html .= '    <div class="title"><div class="habit-name">'.format_text($habit->name).'</div><div class="description">'.format_text($habit->description).'</div></div>';
+        $html .= '<div class="title"><div class="habit-name">'.format_text($habit->name).'</div>';
+        $html .= '    <div class="description">'.format_text($habit->description).'</div></div>';
 
         $html .= '    <div class="time-line">';
 
@@ -130,14 +131,17 @@ class local_good_habits_renderer extends plugin_renderer_base {
         foreach ($displayset as $unit) {
             $dataxytxt = '';
             $txt = '<div class="empty-day">  </div>';
-            if (isset($entries[$unit->getTimestamp()])) {
-                $entry = $entries[$unit->getTimestamp()];
+            $timestamp = $unit->getTimestamp();
+            if (isset($entries[$timestamp])) {
+                $entry = $entries[$timestamp];
                 $dataxytxt = ' data-x="'.$entry->x_axis_val.'" data-y="'.$entry->y_axis_val.'" ';
                 $txt = $entry->x_axis_val . ' / ' . $entry->y_axis_val;
             }
             $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
             $caninteractclass = ($caninteract) ? '' : ' no-interact ';
-            $html .= '<div class="checkmark ' . $caninteractclass . '" data-timestamp="'.$unit->getTimestamp().'" '.$dataxytxt.'>'.$txt.'</div>';
+            
+            $html .= '<div class="checkmark ' . $caninteractclass . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
+            $html .= $txt . '</div>';
         }
 
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
@@ -219,8 +223,10 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $nametxt = get_string('add_new_habit_name', 'local_good_habits');
         $desctxt = get_string('add_new_habit_desc', 'local_good_habits');
 
-        $habitname = "<label for='new-habit-name'>$nametxt</label><input class='new-habit-name' type='text' name='new-habit-name'> </input>";
-        $habitdesc = "<label for='new-habit-desc'>$desctxt</label><input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
+        $habitname = "<label for='new-habit-name'>$nametxt</label>";
+        $habitname .= "<input class='new-habit-name' type='text' name='new-habit-name'> </input>";
+        $habitdesc = "<label for='new-habit-desc'>$desctxt</label>";
+        $habitdesc .= "<input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
 
         $submittxt = get_string('add_new_habit', 'local_good_habits');
         $submit = "<input type='submit' value='$submittxt'> </input>";
