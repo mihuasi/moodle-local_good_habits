@@ -58,7 +58,7 @@ class Helper {
         return static::timestamp_to_date_time($timestamp);
     }
 
-    public static function unix_days($timestamp) {
+    private static function unix_days($timestamp) {
         $numdays = $timestamp / 60 / 60 / 24;
         return floor($numdays);
     }
