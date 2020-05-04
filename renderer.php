@@ -139,7 +139,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             }
             $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
             $caninteractclass = ($caninteract) ? '' : ' no-interact ';
-            
+
             $html .= '<div class="checkmark ' . $caninteractclass . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
             $html .= $txt . '</div>';
         }
