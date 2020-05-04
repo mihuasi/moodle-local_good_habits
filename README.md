@@ -1,4 +1,4 @@
-# Good Habits Plugin (1.1) for Moodle
+# Good Habits Plugin (1.2) for Moodle
 
 The intention of this plugin is to help track habits over time. Within an e-learning context this may help cultivate behaviours that improve learning outcomes.
 
@@ -9,6 +9,13 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 - Multilingual support
 - Granular access control: 3 capabilities for access to plugin, management of habits and management of habit entries
 - Uses the Privacy API to allow for control over user data.
+
+## Changes from 1.1
+
+- CSS specificity improved
+- Tables renamed to fit Moodle standards
+- php changes to fit Moodle standards
+- Fix JS bug when re-loading co-ordinates
 
 ## Changes from 1.0
 
