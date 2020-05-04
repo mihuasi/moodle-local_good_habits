@@ -46,7 +46,8 @@ class local_good_habits_renderer extends plugin_renderer_base {
         foreach ($displayset as $k => $unit) {
             $isfirst = $k == 0;
             $islast = $k == (count($displayset) - 1);
-            $month = $unit->display_month($isfirst);
+            $month = $unit->display_month();
+
             $display = $unit->display_unit();
             $topline = $display['topLine'];
 

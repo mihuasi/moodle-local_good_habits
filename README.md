@@ -16,6 +16,7 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 - Tables renamed to fit Moodle standards
 - php changes to fit Moodle standards
 - Fix JS bug when re-loading co-ordinates
+- Add .travis.yml for automated testing
 
 ## Changes from 1.0
 

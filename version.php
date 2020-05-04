@@ -26,5 +26,5 @@ $plugin->version   = 2018081501;              // The current plugin version (Dat
 $plugin->requires  = 2018051701.06;              // Requires this Moodle version.
 $plugin->component = 'local_good_habits'; // Full name of the plugin (used for diagnostics).
 
-$plugin->release = '1.1';
+$plugin->release = '1.2';
 $plugin->maturity = MATURITY_BETA;

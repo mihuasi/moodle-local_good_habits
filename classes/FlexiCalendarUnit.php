@@ -60,12 +60,12 @@ class FlexiCalendarUnit extends \DateTime {
         return $display;
     }
 
-    public function display_month($display = false) {
+    public function display_month() {
         $offset = $this->periodduration;
         $previousdatetime = Helper::new_date_time($this, '-' . $offset . ' day');
         $previousmonth = $previousdatetime->format('M');
         $currentmonth = $this->format('M');
-        if ($display OR $previousmonth != $currentmonth) {
+        if ($previousmonth != $currentmonth) {
             return $currentmonth;
         }
         return '';
