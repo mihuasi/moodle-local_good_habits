@@ -235,7 +235,12 @@ jQuery(window).on('load',function($) {
 
 
     $('.streak.add-new-habit').click(function () {
-        $('.add-new-habit-form').show();
+        var isGlobal = $(this).hasClass('global');
+        var formClass = '.add-new-habit-form.personal';
+        if (isGlobal) {
+            formClass = '.add-new-habit-form.global';
+        }
+        $(formClass).show();
         $(this).addClass('clicked');
         $(this).text('');
     });

@@ -33,7 +33,7 @@ require_login();
 $context = context_system::instance();
 
 require_capability('local/good_habits:view', $context);
-require_capability('local/good_habits:manage_habits', $context);
+require_capability('local/good_habits:manage_global_habits', $context);
 
 $habitid = required_param('habitId', PARAM_INT);
 

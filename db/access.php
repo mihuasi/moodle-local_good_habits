@@ -36,12 +36,22 @@ $capabilities = array(
         )
     ),
 
-    'local/good_habits:manage_habits' => array(
+    'local/good_habits:manage_global_habits' => array(
         'riskbitmask' => RISK_SPAM,
         'contextlevel' => CONTEXT_SYSTEM,
         'captype' => 'write',
         'archetypes' => array(
             'editingteacher' => CAP_ALLOW
+        )
+    ),
+
+    'local/good_habits:manage_personal_habits' => array(
+        'riskbitmask' => RISK_SPAM,
+        'contextlevel' => CONTEXT_SYSTEM,
+        'captype' => 'write',
+        'archetypes' => array(
+            'student' => CAP_ALLOW,
+            'user' => CAP_ALLOW
         )
     ),
 );

@@ -82,8 +82,12 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $arr[] = $this->print_habit($calendar, $habit);
         }
 
-        if (has_capability('local/good_habits:manage_habits', $PAGE->context)) {
-            $arr[] = $this->print_add_habit_el();
+        if (has_capability('local/good_habits:manage_global_habits', $PAGE->context)) {
+            $arr[] = $this->print_add_habit_el(true);
+        }
+
+        if (1 OR has_capability('local/good_habits:manage_personal_habits', $PAGE->context)) {
+            $arr[] = $this->print_add_habit_el(false);
         }
 
         return '<div class="habits">' . implode('', $arr) . '</div>';
@@ -93,7 +97,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         global $PAGE;
         $html = "<div class='habit habit-".$habit->id."'>";
 
-        $canmanage = has_capability('local/good_habits:manage_habits', $PAGE->context);
+        $canmanage = has_capability('local/good_habits:manage_global_habits', $PAGE->context);
 
         $canmanageclass = ($canmanage) ? ' can-edit ' : '';
 
@@ -170,7 +174,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             'wwwroot' => $CFG->wwwroot,
             'sesskey' => sesskey(),
             'can-interact' => (int) has_capability('local/good_habits:manage_entries', $PAGE->context),
-            'can-manage' => (int) has_capability('local/good_habits:manage_habits', $PAGE->context),
+            'can-manage' => (int) has_capability('local/good_habits:manage_global_habits', $PAGE->context),
         );
 
         $datatext = '';
@@ -213,12 +217,21 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return "<input type='hidden' name='sesskey' value='$sessionkey'> </input>";
     }
 
-    public function print_add_habit_el() {
+    public function print_add_habit_el($global = true) {
         $html = "<div class='clearboth'></div>";
+        if ($global) {
+            $newhabittext = get_string('add_new_habit_global', 'local_good_habits');
+            $globalclass = 'global';
+        } else {
+            $newhabittext = get_string('add_new_habit_personal', 'local_good_habits');
+            $globalclass = 'personal';
+        }
 
-        $plus = "<div class='streak add-new-habit'>+</div>";
+        $plus = "<div class='streak add-new-habit $globalclass'>+ <span class='new-habit-text'>".$newhabittext."</span></div>";
 
         $sessionkey = $this->print_hidden_session_key();
+
+        $globalinput = "<input type='hidden' name='isglobal' value='$global' />";
 
         $nametxt = get_string('add_new_habit_name', 'local_good_habits');
         $desctxt = get_string('add_new_habit_desc', 'local_good_habits');
@@ -228,10 +241,12 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $habitdesc = "<label for='new-habit-desc'>$desctxt</label>";
         $habitdesc .= "<input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
 
-        $submittxt = get_string('add_new_habit', 'local_good_habits');
+        $submittxt = $newhabittext;
         $submit = "<input type='submit' value='$submittxt'> </input>";
 
-        $form = "<form class='add-new-habit-form' method='post'> $sessionkey $habitname $habitdesc $submit</form>";
+        $formcontent = "$sessionkey $habitname $habitdesc $globalinput $submit";
+
+        $form = "<form class='add-new-habit-form $globalclass' method='post'>$formcontent</form>";
         $html .= "<div class='habit'>$plus $form</div>";
 
         return $html;

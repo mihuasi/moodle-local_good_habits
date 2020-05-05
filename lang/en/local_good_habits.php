@@ -35,7 +35,7 @@ $string['settings_heading'] = 'Good Habits';
 $string['settings_desc'] = 'The intention of this plugin is to help track habits over time. <a href="{$a}">Click here to start using.</a>';
 
 $string['good_habits:manage_entries'] = 'Manage Entries';
-$string['good_habits:manage_habits'] = 'Manage Habits';
+$string['good_habits:manage_global_habits'] = 'Manage Global Habits';
 $string['good_habits:view'] = 'View';
 $string['delete_all_entries'] = 'Delete All My Habit Entries';
 
@@ -44,3 +44,8 @@ $string['privacy:metadata:userid'] = 'The ID of the user with this habit entry.'
 $string['privacy:metadata:x_axis_val'] = 'The X-axis value of this habit entry.';
 $string['privacy:metadata:y_axis_val'] = 'The Y-axis value of this habit entry.';
 $string['local_good_habits_subcontext'] = 'Habit Entries';
+
+$string['habit_added'] = 'Habit Added';
+$string['habit_entries_deleted'] = 'All Habit Entries Removed';
+$string['add_new_habit_personal'] = 'Add New Personal Habit';
+$string['add_new_habit_global'] = '[Admin] Add New Global Habit';

@@ -267,3 +267,16 @@
 .path-local-good_habits .checkmark.is-selected {
     border: 1px solid black;
 }
+
+.path-local-good_habits .habits .habit .streak.add-new-habit {
+    width: 440px;
+}
+
+.path-local-good_habits .habits .habit .streak.add-new-habit.clicked {
+    width: 40px;
+}
+
+.path-local-good_habits .habits .habit .new-habit-text {
+    font-size: 28px;
+    color: black;
+}

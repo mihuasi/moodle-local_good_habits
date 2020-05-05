@@ -27,14 +27,21 @@ defined('MOODLE_INTERNAL') || die();
 class IndexHelper {
 
     public static function check_for_new_habit() {
-        global $PAGE;
+        global $PAGE, $USER;
 
         $name = optional_param('new-habit-name', '', PARAM_TEXT);
         if (!$name) {
             return null;
         }
         require_sesskey();
-        require_capability('local/good_habits:manage_habits', $PAGE->context);
+
+        $isglobal = optional_param('isglobal', 0, PARAM_INT);
+
+        if ($isglobal) {
+            require_capability('local/good_habits:manage_global_habits', $PAGE->context);
+        } else {
+            require_capability('local/good_habits:manage_personal_habits', $PAGE->context);
+        }
 
         $desc = optional_param('new-habit-desc', '', PARAM_TEXT);
         global $DB;
@@ -44,6 +51,9 @@ class IndexHelper {
         }
         $record = new \stdClass();
         $record->gh_id = 0;
+        if (!$isglobal) {
+            $record->userid = $USER->id;
+        }
         $record->name = $name;
         $record->description = $desc;
         $record->colour = '';
@@ -51,6 +61,11 @@ class IndexHelper {
         $record->timemodified = $record->timecreated;
 
         $DB->insert_record('local_good_habits_item', $record);
+
+        $msg = get_string('habit_added', 'local_good_habits');
+
+        $url = new \moodle_url('/local/good_habits/index.php');
+        redirect($url, $msg);
     }
 
     public static function check_delete_entries() {
@@ -60,12 +75,19 @@ class IndexHelper {
             require_sesskey();
             require_capability('local/good_habits:manage_entries', $PAGE->context);
             Helper::delete_entries($USER->id);
+
+            $msg = get_string('habit_entries_deleted', 'local_good_habits');
+
+            $url = new \moodle_url('/local/good_habits/index.php');
+
+            redirect($url, $msg);
         }
     }
 
     public static function get_habits() {
-        global $DB;
-        $records = $DB->get_records('local_good_habits_item');
+        global $DB, $USER;
+        $sql = 'SELECT * FROM {local_good_habits_item} WHERE userid = :userid OR userid IS NULL OR userid = 0';
+        $records = $DB->get_records_sql($sql, array('userid' => $USER->id));
         $arr = array();
         foreach ($records as $k => $habit) {
             $arr[$k] = new Habit($habit->id);
