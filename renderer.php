@@ -230,9 +230,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return "<input type='hidden' name='sesskey' value='$sessionkey'> </input>";
     }
 
-    public function print_add_habit_el($global = true) {
+    public function print_add_habit_el($globalhabit = true) {
         $html = "<div class='clearboth'></div>";
-        if ($global) {
+        if ($globalhabit) {
             $newhabittext = get_string('add_new_habit_global', 'local_good_habits');
             $globalclass = 'global';
         } else {
@@ -244,7 +244,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
 
         $sessionkey = $this->print_hidden_session_key();
 
-        $globalinput = "<input type='hidden' name='isglobal' value='$global' />";
+        $globalinput = "<input type='hidden' name='isglobal' value='$globalhabit' />";
 
         $nametxt = get_string('add_new_habit_name', 'local_good_habits');
         $desctxt = get_string('add_new_habit_desc', 'local_good_habits');

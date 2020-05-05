@@ -12,12 +12,13 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 
 ## Changes from 1.1
 
-- CSS specificity improved
-- Tables renamed to fit Moodle standards
-- php changes to fit Moodle standards
+- Add ability to create global/personal habits with associated capabilities
 - Fix JS bug when re-loading co-ordinates
 - Fix page reload issue with adding new habits / deleting entries
 - Fix change of month display
+- CSS specificity improved
+- Tables renamed to fit Moodle standards
+- php changes to fit Moodle standards
 - Add .travis.yml for automated testing
 
 ## Changes from 1.0
