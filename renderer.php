@@ -83,11 +83,13 @@ class local_good_habits_renderer extends plugin_renderer_base {
         }
 
         if (has_capability('local/good_habits:manage_global_habits', $PAGE->context)) {
-            $arr[] = $this->print_add_habit_el(true);
+            $newhabittext = get_string('add_new_habit_global', 'local_good_habits');
+            $arr[] = $this->print_add_habit_el('global', $newhabittext, 1);
         }
 
         if (has_capability('local/good_habits:manage_personal_habits', $PAGE->context)) {
-            $arr[] = $this->print_add_habit_el(false);
+            $newhabittext = get_string('add_new_habit_personal', 'local_good_habits');
+            $arr[] = $this->print_add_habit_el('personal', $newhabittext, 0);
         }
 
         return '<div class="habits">' . implode('', $arr) . '</div>';
@@ -230,15 +232,8 @@ class local_good_habits_renderer extends plugin_renderer_base {
         return "<input type='hidden' name='sesskey' value='$sessionkey'> </input>";
     }
 
-    public function print_add_habit_el($globalhabit = true) {
+    public function print_add_habit_el($globalclass, $newhabittext, $globalhabit) {
         $html = "<div class='clearboth'></div>";
-        if ($globalhabit) {
-            $newhabittext = get_string('add_new_habit_global', 'local_good_habits');
-            $globalclass = 'global';
-        } else {
-            $newhabittext = get_string('add_new_habit_personal', 'local_good_habits');
-            $globalclass = 'personal';
-        }
 
         $plus = "<div class='streak add-new-habit $globalclass'>+ <span class='new-habit-text'>".$newhabittext."</span></div>";
 
