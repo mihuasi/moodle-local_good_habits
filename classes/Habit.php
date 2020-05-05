@@ -44,6 +44,13 @@ class Habit {
         }
     }
 
+    public function is_global() {
+        if (!$this->userid) {
+            return true;
+        }
+        return false;
+    }
+
     public function get_entries($userid, $periodduration) {
         global $DB;
         $params = array('habit_id' => $this->id, 'userid' => $userid, 'period_duration' => $periodduration);

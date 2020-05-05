@@ -86,7 +86,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $arr[] = $this->print_add_habit_el(true);
         }
 
-        if (1 OR has_capability('local/good_habits:manage_personal_habits', $PAGE->context)) {
+        if (has_capability('local/good_habits:manage_personal_habits', $PAGE->context)) {
             $arr[] = $this->print_add_habit_el(false);
         }
 
@@ -97,11 +97,24 @@ class local_good_habits_renderer extends plugin_renderer_base {
         global $PAGE;
         $html = "<div class='habit habit-".$habit->id."'>";
 
-        $canmanage = has_capability('local/good_habits:manage_global_habits', $PAGE->context);
+        $editglobal = has_capability('local/good_habits:manage_global_habits', $PAGE->context);
+        $editpersonal = has_capability('local/good_habits:manage_personal_habits', $PAGE->context);
+        $isglobal = $habit->is_global();
+
+        $canmanage = false;
+        if ($isglobal AND $editglobal) {
+            $canmanage = true;
+        }
+        if (!$isglobal AND $editpersonal) {
+            $canmanage = true;
+        }
 
         $canmanageclass = ($canmanage) ? ' can-edit ' : '';
 
-        $html .= '<div class="streak ' . $canmanageclass . '" data-habit-id="'.$habit->id.'"></div>';
+        $data = ' data-habit-id="'.$habit->id.'" data-is-global="'.$isglobal.'" ';
+        $globalclass = ($isglobal) ? 'global' : 'personal';
+
+        $html .= '<div class="streak ' . $canmanageclass . ' ' . $globalclass . '" ' . $data . '></div>';
 
         $html .= '<div class="title"><div class="habit-name">'.format_text($habit->name).'</div>';
         $html .= '    <div class="description">'.format_text($habit->description).'</div></div>';
@@ -185,7 +198,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $hiddendata = '<div class="goodhabits-hidden-data" '.$datatext.'></div> ';
 
         $langstringids = array(
-            'confirm_delete'
+            'confirm_delete_global', 'confirm_delete_personal'
         );
         $datalang = gh\Helper::lang_string_as_data($langstringids);
 
@@ -237,9 +250,9 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $desctxt = get_string('add_new_habit_desc', 'local_good_habits');
 
         $habitname = "<label for='new-habit-name'>$nametxt</label>";
-        $habitname .= "<input class='new-habit-name' type='text' name='new-habit-name'> </input>";
+        $habitname .= "<input class='new-habit-name' type='text' maxlength='17' name='new-habit-name'> </input>";
         $habitdesc = "<label for='new-habit-desc'>$desctxt</label>";
-        $habitdesc .= "<input class='new-habit-desc' type='text' name='new-habit-desc'> </input>";
+        $habitdesc .= "<input class='new-habit-desc' type='text' maxlength='75' name='new-habit-desc'> </input>";
 
         $submittxt = $newhabittext;
         $submit = "<input type='submit' value='$submittxt'> </input>";

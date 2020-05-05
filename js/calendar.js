@@ -122,25 +122,8 @@ jQuery(window).on('load',function($) {
     var displayVals = function (x,y) {
         return x + ' / ' + y;
     };
-    // function displayVals(x, y) {
-    //     return x + ' / ' + y;
-    // }
-
-    // function onGridChange() {
-    //     $('.talentgrid-hidden-response').on('change', function () {
-    //         var values = JSON.parse($(this).val());
-    //         var displayVals = displayVals(values.x, values.y);
-    //         var selectedCheckmark = $('.checkmark.is-selected');
-    //         selectedCheckmark.text(displayVals);
-    //     });
-    //
-    //     $('.axis-selector').change(function () {
-    //         alert(23);
-    //     });
-    // }
 
     $('.checkmark').click(function () {
-        // var el = jQuery(this);
 
         var gridOpen = $('.goodhabits-container').hasClass('grid-is-open');
 
@@ -264,7 +247,12 @@ jQuery(window).on('load',function($) {
     }
 
     $('.streak.can-edit').click(function () {
-        var confirmMsg = getLangString('confirm_delete');
+        var isGlobal = $(this).data('is-global');
+        var strId = 'confirm_delete_global';
+        if (!isGlobal) {
+            strId = 'confirm_delete_personal';
+        }
+        var confirmMsg = getLangString(strId);
         var proceed = confirm(confirmMsg);
         if (proceed) {
             var habitId = $(this).data('habit-id');

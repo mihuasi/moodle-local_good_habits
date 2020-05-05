@@ -280,3 +280,12 @@
     font-size: 28px;
     color: black;
 }
+
+.path-local-good_habits .habits .habit .streak.global,
+.path-local-good_habits .habits .habit .streak.add-new-habit.global.clicked {
+    border: solid brown 1px;
+}
+
+.path-local-good_habits .habits .habit .streak.add-new-habit.global {
+    border: none;
+}
