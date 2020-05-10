@@ -200,8 +200,18 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $hiddendata = '<div class="goodhabits-hidden-data" '.$datatext.'></div> ';
 
         $langstringids = array(
-            'confirm_delete_global', 'confirm_delete_personal'
+            'confirm_delete_global', 'confirm_delete_personal', 'entry_for', 'cancel', 'save'
         );
+
+        $gridstringids = array(
+            'imagetitle', 'xlabel', 'ylabel', 'x_small_label_left', 'x_small_label_center', 'x_small_label_right',
+            'y_small_label_bottom', 'y_small_label_center', 'y_small_label_top', 'x_select_label', 'y_select_label',
+            'x_default', 'y_default', 'overlay_1_1', 'overlay_1_2', 'overlay_1_3', 'overlay_2_1', 'overlay_2_2',
+            'overlay_2_3', 'overlay_3_1', 'overlay_3_2', 'overlay_3_3'
+        );
+
+        $langstringids = array_merge($langstringids, $gridstringids);
+
         $datalang = gh\Helper::lang_string_as_data($langstringids);
 
         $hiddenlangstrings = '<div class="goodhabits-hidden-lang" '.$datalang.'></div> ';

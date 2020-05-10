@@ -47,31 +47,31 @@ jQuery(window).on('load',function($) {
                 text: ''
             };
 
-            options.imageTitle = 'Place using the drop-downs';
+            options.imageTitle = getLangString('imagetitle');
 
             options.arrowIndicator = arrowIndicator;
 
-            options.xLabel = 'Dedication';
-            options.yLabel = 'Outcome';
+            options.xLabel = getLangString('xlabel');
+            options.yLabel = getLangString('ylabel');
 
             options.xSmallLabels = { // X small labels.
-                left: 'Lax',
-                center: 'Reasonable effort',
-                right: 'Vigorous effort'
+                left: getLangString('x_small_label_left'),
+                center: getLangString('x_small_label_center'),
+                right: getLangString('x_small_label_right')
             };
 
             options.ySmallLabels = { // Y small labels.
-                bottom: 'Disappointing',
-                center: 'Reasonable',
-                top: 'Outstanding'
+                bottom: getLangString('y_small_label_bottom'),
+                center: getLangString('y_small_label_center'),
+                top: getLangString('y_small_label_top')
             };
 
             options.selectControls = { // Options for the selector controls to the right of the grid.
                 enabled: true,
-                    xSelectLabel: 'Dedication',
-                    ySelectLabel: 'Outcome',
-                    xDefault: 'Select',
-                    yDefault: 'Select',
+                xSelectLabel: getLangString('x_select_label'),
+                ySelectLabel: getLangString('y_select_label'),
+                xDefault: getLangString('x_default'),
+                yDefault: getLangString('y_default'),
             };
 
             if (x && y) {
@@ -87,19 +87,19 @@ jQuery(window).on('load',function($) {
 
             options.overlayTexts = { // Text to use when hovering over sections of the grid. False to turn off this feature.
                 1:{
-                    1: 'Instinctually mastering',
-                        2: 'Earning your mastery',
-                        3: 'Working hard for mastery',
+                    1: getLangString('overlay_1_1'),
+                    2: getLangString('overlay_1_2'),
+                    3: getLangString('overlay_1_3'),
                 },
                 2:{
-                    1: 'Laid back competence',
-                        2: 'Achievement through effort',
-                        3: 'Working hard to achieve',
+                    1: getLangString('overlay_2_1'),
+                    2: getLangString('overlay_2_2'),
+                    3: getLangString('overlay_2_3'),
                 },
                 3:{
-                    1: 'You get what you put in!',
-                        2: 'Sticking at it',
-                        3: 'Persevering with a challenge',
+                    1: getLangString('overlay_3_1'),
+                    2: getLangString('overlay_3_2'),
+                    3: getLangString('overlay_3_3'),
                 },
             };
 
@@ -147,13 +147,15 @@ jQuery(window).on('load',function($) {
 
         var habitId = el.parent().data('id');
 
+        var cancelButton = '<button data-type="cancel" type="cancel" name="cancelGrid" value="Cancel">';
+        var saveButton = '<button class="save-button" data-type="submit" type="submit" name="saveGrid" value="Save" disabled>';
         var buttonsHtml = '<div class="grid-buttons">' +
-            '<button data-type="cancel" type="cancel" name="cancelGrid" value="Cancel">Cancel</button>' +
-            '<button class="save-button" data-type="submit" type="submit" name="saveGrid" value="Save" disabled>Save</button>' +
+            cancelButton + getLangString('cancel') + '</button>' +
+            saveButton + getLangString('save') + '</button>' +
             '</div>';
 
         var timestamp = el.data('timestamp');
-        var timeUnitTxt = 'Entry for ' + $('.time-unit-' + timestamp).data('text');
+        var timeUnitTxt = getLangString('entry_for') + " " + $('.time-unit-' + timestamp).data('text');
         var habitTxt = $('.habit-' + habitId + ' .habit-name').text();
         $('.habit-grid-container-' + habitId).append("" +
             "<div class='grid-heading'>"+timeUnitTxt+" ("+habitTxt+")</div>" +
