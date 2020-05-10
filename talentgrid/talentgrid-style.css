@@ -165,27 +165,6 @@
 .path-local-good_habits td.ui-draggable {
     background-clip: padding-box;
 }
-/*
-.path-local-good_habits .x-band-1.y-band-1 {
-    background-color: #f99;
-}
-
-.path-local-good_habits .x-band-2.y-band-1,
-.path-local-good_habits .x-band-3.y-band-1,
-.path-local-good_habits .x-band-2.y-band-2 {
-    background-color: #ff9;
-}
-
-.path-local-good_habits .x-band-3.y-band-3,
-.path-local-good_habits .x-band-3.y-band-2,
-.path-local-good_habits .x-band-2.y-band-3 {
-    background-color: #ccffef;
-}
-
-.path-local-good_habits .x-band-1.y-band-2,
-.path-local-good_habits .x-band-1.y-band-3 {
-    background-color: #ffebcc;
-}*/
 
 .path-local-good_habits .table-plus-axis {
     float: left;
