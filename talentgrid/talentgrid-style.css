@@ -165,7 +165,7 @@
 .path-local-good_habits td.ui-draggable {
     background-clip: padding-box;
 }
-
+/*
 .path-local-good_habits .x-band-1.y-band-1 {
     background-color: #f99;
 }
@@ -185,7 +185,7 @@
 .path-local-good_habits .x-band-1.y-band-2,
 .path-local-good_habits .x-band-1.y-band-3 {
     background-color: #ffebcc;
-}
+}*/
 
 .path-local-good_habits .table-plus-axis {
     float: left;
@@ -239,4 +239,130 @@
 .path-local-good_habits * {
     font-size: 100%;
     font-family: Arial;
+}
+
+.path-local-good_habits .x-val-1.y-val-9,
+.path-local-good_habits .x-val-2.y-val-9,
+.path-local-good_habits .x-val-2.y-val-8,
+.path-local-good_habits .x-val-3.y-val-8 {
+    background-color: #FFE879;
+}
+
+.path-local-good_habits .x-val-1.y-val-8,
+.path-local-good_habits .x-val-1.y-val-7,
+.path-local-good_habits .x-val-1.y-val-6,
+.path-local-good_habits .x-val-2.y-val-7 {
+    background-color: #FFEC91;
+}
+
+.path-local-good_habits .x-val-1.y-val-5,
+.path-local-good_habits .x-val-1.y-val-4,
+.path-local-good_habits .x-val-1.y-val-3,
+.path-local-good_habits .x-val-2.y-val-6,
+.path-local-good_habits .x-val-2.y-val-5,
+.path-local-good_habits .x-val-2.y-val-4,
+.path-local-good_habits .x-val-3.y-val-6,
+.path-local-good_habits .x-val-3.y-val-5 {
+    background-color: #FBFE92;
+}
+
+.path-local-good_habits .x-val-3.y-val-7,
+.path-local-good_habits .x-val-4.y-val-8,
+.path-local-good_habits .x-val-4.y-val-7,
+.path-local-good_habits .x-val-4.y-val-6,
+.path-local-good_habits .x-val-5.y-val-7 {
+    background-color: #FAFE5F;
+}
+
+.path-local-good_habits .x-val-3.y-val-9,
+.path-local-good_habits .x-val-4.y-val-9 {
+    background-color: #FFD50F;
+}
+
+.path-local-good_habits .x-val-5.y-val-9,
+.path-local-good_habits .x-val-5.y-val-8,
+.path-local-good_habits .x-val-6.y-val-9,
+.path-local-good_habits .x-val-6.y-val-8,
+.path-local-good_habits .x-val-7.y-val-9 {
+    background-color: #F7FD0F;
+}
+
+.path-local-good_habits .x-val-1.y-val-2,
+.path-local-good_habits .x-val-1.y-val-1,
+.path-local-good_habits .x-val-2.y-val-3,
+.path-local-good_habits .x-val-2.y-val-2,
+.path-local-good_habits .x-val-2.y-val-1,
+.path-local-good_habits .x-val-3.y-val-4,
+.path-local-good_habits .x-val-3.y-val-3,
+.path-local-good_habits .x-val-3.y-val-2,
+.path-local-good_habits .x-val-4.y-val-3 {
+    background-color: #DBFDA2;
+}
+
+.path-local-good_habits .x-val-4.y-val-5,
+.path-local-good_habits .x-val-4.y-val-4,
+.path-local-good_habits .x-val-5.y-val-6,
+.path-local-good_habits .x-val-5.y-val-5,
+.path-local-good_habits .x-val-5.y-val-4,
+.path-local-good_habits .x-val-6.y-val-7,
+.path-local-good_habits .x-val-6.y-val-6,
+.path-local-good_habits .x-val-6.y-val-5,
+.path-local-good_habits .x-val-7.y-val-6 {
+    background-color: #CBFC78;
+}
+
+.path-local-good_habits .x-val-7.y-val-8,
+.path-local-good_habits .x-val-7.y-val-7,
+.path-local-good_habits .x-val-8.y-val-9,
+.path-local-good_habits .x-val-8.y-val-8,
+.path-local-good_habits .x-val-8.y-val-7,
+.path-local-good_habits .x-val-9.y-val-9,
+.path-local-good_habits .x-val-9.y-val-8 {
+    background-color: #B5E61D;
+}
+
+.path-local-good_habits .x-val-3.y-val-1,
+.path-local-good_habits .x-val-4.y-val-2,
+.path-local-good_habits .x-val-4.y-val-1,
+.path-local-good_habits .x-val-5.y-val-3,
+.path-local-good_habits .x-val-5.y-val-2,
+.path-local-good_habits .x-val-5.y-val-1,
+.path-local-good_habits .x-val-6.y-val-2 {
+    background-color: #D8FEF1;
+}
+
+.path-local-good_habits .x-val-6.y-val-4,
+.path-local-good_habits .x-val-6.y-val-3,
+.path-local-good_habits .x-val-7.y-val-5,
+.path-local-good_habits .x-val-7.y-val-4,
+.path-local-good_habits .x-val-7.y-val-3,
+.path-local-good_habits .x-val-8.y-val-4 {
+    background-color: #7CFCCF;
+}
+
+.path-local-good_habits .x-val-8.y-val-6,
+.path-local-good_habits .x-val-8.y-val-5,
+.path-local-good_habits .x-val-9.y-val-7,
+.path-local-good_habits .x-val-9.y-val-6 {
+    background-color: #1CF9AB;
+}
+
+.path-local-good_habits .x-val-6.y-val-1,
+.path-local-good_habits .x-val-7.y-val-1,
+.path-local-good_habits .x-val-8.y-val-1,
+.path-local-good_habits .x-val-9.y-val-1 {
+    background-color: #CBF2FE;
+}
+
+.path-local-good_habits .x-val-7.y-val-2,
+.path-local-good_habits .x-val-8.y-val-2,
+.path-local-good_habits .x-val-8.y-val-3,
+.path-local-good_habits .x-val-9.y-val-2 {
+    background-color: #91E4FD;
+}
+
+.path-local-good_habits .x-val-9.y-val-5,
+.path-local-good_habits .x-val-9.y-val-4,
+.path-local-good_habits .x-val-9.y-val-3 {
+    background-color: #31CDFB;
 }

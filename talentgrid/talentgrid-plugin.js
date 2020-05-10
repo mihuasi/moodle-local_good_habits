@@ -444,7 +444,10 @@ $.fn.talentgriddle = function(options) {
                     smileyClass,
                     studentsClass,
                     'x-band-' + xBand,
-                    'y-band-' + yBand];
+                    'y-band-' + yBand,
+                    'x-val-' + xVal,
+                    'y-val-' + yVal,
+                ];
 
                 var cellClasses = cellClassesArray.join(" ");
                 html += '<td ' + titleText + ' ' + dataStudents + ' data-x-val="' + xVal + '" class="' + cellClasses + '">' + content + '</td>';

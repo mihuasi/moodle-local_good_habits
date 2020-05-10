@@ -102,7 +102,7 @@ jQuery(window).on('load',function($) {
                         3: 'Persevering with a challenge',
                 },
             };
-            // console.log($.ui);
+
             var talentgrid = $('.talentgrid').talentgriddle(options);
 
         });
