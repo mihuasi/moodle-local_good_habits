@@ -13,6 +13,8 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 ## Changes from 1.1
 
 - Add ability to create global/personal habits with associated capabilities
+- Change colours to track diagonal relationship between effort and outcome
+- Entry colour changes to reflect outcome/effort selection
 - Fix JS bug when re-loading co-ordinates
 - Fix page reload issue with adding new habits / deleting entries
 - Fix change of month display

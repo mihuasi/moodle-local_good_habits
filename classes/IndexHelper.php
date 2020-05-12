@@ -46,7 +46,7 @@ class IndexHelper {
         $desc = optional_param('new-habit-desc', '', PARAM_TEXT);
         global $DB;
 
-        if ($DB->record_exists('local_good_habits_item', array('name' => $name))) {
+        if ($DB->record_exists('local_good_habits_item', array('name' => $name, 'userid' => $USER->id))) {
             print_error('Habit already exists with name ' . $name);
         }
         $record = new \stdClass();
