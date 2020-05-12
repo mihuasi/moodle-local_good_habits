@@ -182,10 +182,13 @@
     width: 40px;
     text-align: center;
     line-height: 40px;
-    background: #e6c973;
     border-radius: 20px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.path-local-good_habits .checkmark.noxy {
+    background-color: #e6c973;
 }
 
 .path-local-good_habits .habits .habit .time-line .checkmark.no-interact {

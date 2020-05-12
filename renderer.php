@@ -151,15 +151,20 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $dataxytxt = '';
             $txt = '<div class="empty-day">  </div>';
             $timestamp = $unit->getTimestamp();
+            $classxy = 'noxy';
             if (isset($entries[$timestamp])) {
                 $entry = $entries[$timestamp];
-                $dataxytxt = ' data-x="'.$entry->x_axis_val.'" data-y="'.$entry->y_axis_val.'" ';
-                $txt = $entry->x_axis_val . ' / ' . $entry->y_axis_val;
+                $xval = $entry->x_axis_val;
+                $yval = $entry->y_axis_val;
+                $dataxytxt = ' data-x="'. $xval .'" data-y="'. $yval .'" ';
+                $txt = $xval . ' / ' . $yval;
+                $classxy = 'x-val-' . $xval . ' y-val-' . $yval;
             }
             $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
             $caninteractclass = ($caninteract) ? '' : ' no-interact ';
 
-            $html .= '<div class="checkmark ' . $caninteractclass . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
+            $classes = 'checkmark ' . $caninteractclass . ' ' . $classxy;
+            $html .= '<div class="' . $classes . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
             $html .= $txt . '</div>';
         }
 

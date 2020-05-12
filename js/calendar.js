@@ -190,6 +190,11 @@ jQuery(window).on('load',function($) {
             selectedCheckmark.data('yVal', values.y);
             selectedCheckmark.attr("data-x", values.x);
             selectedCheckmark.attr("data-y", values.y);
+            selectedCheckmark.removeClass(function (index, className) {
+                return (className.match (/(^|\s)[xy]-val-\S+/g) || []).join(' ');
+            });
+            selectedCheckmark.addClass('x-val-' + values.x);
+            selectedCheckmark.addClass('y-val-' + values.y);
 
             var displayVals = values.x + ' / ' + values.y;
             selectedCheckmark.text(displayVals);
