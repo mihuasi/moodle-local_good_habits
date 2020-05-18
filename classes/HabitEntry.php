@@ -59,33 +59,6 @@ abstract class HabitEntry {
         $this->existingrecord = $DB->get_record('local_good_habits_entry', $params);
     }
 
-    public function get_sub_entries() {
-        global $DB;
-        $sql = 'SELECT * FROM {local_good_habits_entry}
-            WHERE userid = :userid AND habit_id = :habitid AND period_duration < :periodduration 
-            AND endofperiod_timestamp > :starttime AND endofperiod_timestamp < :endtime';
-        $periodduration = $this->periodduration;
-        $endofperiodtimestamp = $this->endofperiodtimestamp;
-        $starttime = $endofperiodtimestamp - $periodduration;
-        $subentries = $DB->get_records_sql($sql, array(
-            'habitid' => $this->habit->id,
-            'periodduration' => $periodduration,
-            'starttime' => $starttime,
-            'endtime' => $endofperiodtimestamp
-        ));
-        return $subentries;
-    }
-
-    public function get_sub_entries_if_sufficient() {
-        $periodduration = $this->periodduration;
-        $minnumbersubentries = $periodduration / 2;
-        $subentries = static::get_sub_entries();
-        if (count($subentries) >= $minnumbersubentries) {
-            return $subentries;
-        }
-        return false;
-    }
-
     public function already_exists() {
 
         return (boolean) $this->existingrecord;
