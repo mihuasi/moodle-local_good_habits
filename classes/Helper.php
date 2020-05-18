@@ -46,17 +46,11 @@ class Helper {
         $days = static::unix_days($timestamp);
         $fraction = $days / $periodduration;
         $endperiodnumdays = floor($fraction) * ($periodduration);
-        static::add_to_end_period_till_current($periodduration, $days, $endperiodnumdays);
+        if ($endperiodnumdays < $days) {
+            $endperiodnumdays += $periodduration;
+        }
         $endperiodtime = static::days_to_time($endperiodnumdays);
         return $endperiodtime;
-    }
-
-    private static function add_to_end_period_till_current($periodduration, $days, &$endperiodnumdays) {
-        if ($endperiodnumdays > $days) {
-            return $endperiodnumdays;
-        }
-        $endperiodnumdays += $periodduration;
-        static::add_to_end_period_till_current($periodduration, $days, $endperiodnumdays);
     }
 
     public static function get_end_period_date_time($periodduration, \DateTime $basedate) {
