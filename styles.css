@@ -22,9 +22,9 @@
 }
 
 .path-local-good_habits .calendar {
-    margin-left: 200px;
+    margin-left: 190px;
     /*float: right;*/
-    width: calc(100% - 210px);
+    width: calc(100% - 205px);
     max-width: calc(50px * 8);
     /*overflow-y: hidden;*/
     /*overflow-x: scroll;*/
@@ -52,6 +52,10 @@
     position: relative;
     border-radius: 40px;
     background: #282c37;
+}
+
+.path-local-good_habits .calendar .time-unit:last-child {
+    margin-right: 0;
 }
 
 .path-local-good_habits .calendar .time-unit .top-line {
@@ -135,6 +139,7 @@
 .path-local-good_habits .notes .habit {
     padding: 10px;
     margin: 2px 0;
+    padding-left: 0;
     /*background: #313543;*/
 }
 
@@ -149,6 +154,10 @@
     color: #9baec8;
     margin-right: 10px;
     font-size: 40px;
+}
+
+.path-local-good_habits .habits .habit .streak:last-child {
+    margin-right: 0;
 }
 
 .path-local-good_habits .streak.can-edit.hovering {
@@ -176,7 +185,8 @@
     width: calc(50px * 32);
 }
 
-.path-local-good_habits .habits .habit .time-line .checkmark {
+.path-local-good_habits .habits .habit .time-line .checkmark,
+.path-local-good_habits .habits .habit .time-line .bubble-up {
     float: left;
     height: 40px;
     width: 40px;
@@ -189,6 +199,16 @@
 
 .path-local-good_habits .checkmark.noxy {
     background-color: #e6c973;
+}
+
+.path-local-good_habits .habits .habit .time-line .bubble-up {
+    background-color: transparent;
+    border: solid black 1px;
+}
+
+.path-local-good_habits .habits .habit .time-line .bubble-up-sign {
+    font-size: 25px;
+    line-height: 33px;
 }
 
 .path-local-good_habits .habits .habit .time-line .checkmark.no-interact {
@@ -291,4 +311,25 @@
 
 .path-local-good_habits .habits .habit .streak.add-new-habit.global {
     border: none;
+}
+
+.path-local-good_habits .goodhabits-container {
+    margin-left: 10px;
+}
+
+.path-local-good_habits.mobiletheme .goodhabits-container {
+    margin-left: 0;
+}
+
+.path-local-good_habits.mobiletheme .talentgrid-select-controls label,
+.path-local-good_habits.mobiletheme .talentgrid-select-controls select {
+    display: block;
+}
+
+.path-local-good_habits.mobiletheme .talentgrid-select-controls .y-axis-selector-label {
+    margin-top: 15px;
+}
+
+.path-local-good_habits.mobiletheme .grid-buttons .save-button {
+    margin-top: 10px;
 }

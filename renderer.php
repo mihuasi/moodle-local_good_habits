@@ -167,6 +167,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $html .= '<div class="' . $classes . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
             $html .= $txt . '</div>';
         }
+        $html .= '<div class="bubble-up"><span class="bubble-up-sign">&uarr;</span></div>';
 
         return "<div class='checkmarks' data-id='".$habit->id."'>$html</div>";
     }

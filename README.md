@@ -36,7 +36,14 @@ The intention of this plugin is to help track habits over time. Within an e-lear
 
 ## Ideas for future improvements
 
-- Allow management of different habits for different users.
+- Habit editing options
+- Improve date selection UI
 - Implement as an activity module to hook into Moodle features such as activity tracking.
 - Decouple calendar system from entry type to support alternative types.
 - Support for tracking habits on a single dimension.
+- Add option to bubble up results, eg, from days to weeks
+- Save/load habits and entries
+- Make pre-loaded sets of habits available
+- Add a system for tracking linear outcomes periodically
+- A facility for marking critical points of change
+- Analytics to chart the changes of all of these over time

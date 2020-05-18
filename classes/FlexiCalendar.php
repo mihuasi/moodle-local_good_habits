@@ -79,7 +79,8 @@ class FlexiCalendar {
     }
 
     public function get_back_url() {
-        $backdate = Helper::new_date_time($this->basedate, '-' . $this->current_span() . ' day');
+        $offset = $this->current_span() - 1;
+        $backdate = Helper::new_date_time($this->basedate, '-' . $offset . ' day');
         $backdatemysql = Helper::date_time_to_mysql($backdate);
         $url = new \moodle_url('/local/good_habits/index.php', array('toDate' => $backdatemysql));
         return $url;
@@ -93,6 +94,7 @@ class FlexiCalendar {
             if ($forwarddate->getTimestamp() <= $this->basedate->getTimestamp()) {
                 return null;
             }
+            $forwarddate->modify('+' . $this->periodduration . ' day');
         }
         $forwarddatemysql = Helper::date_time_to_mysql($forwarddate);
         $url = new \moodle_url('/local/good_habits/index.php', array('toDate' => $forwarddatemysql));
