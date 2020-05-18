@@ -63,5 +63,22 @@ class HabitEntryTwoDimensional extends HabitEntry {
         $DB->update_record('local_good_habits_entry', $this->existingrecord);
     }
 
+    public function bubble_up() {
+        $subs = $this->get_sub_entries_if_sufficient();
+        if (!$subs) {
+            return false;
+        }
+        $xtotal = 0;
+        $ytotal = 0;
+        $count = 0;
+        foreach ($subs as $sub) {
+            $xtotal += $sub->x_axis_val;
+            $ytotal += $sub->y_axis_val;
+            $count ++;
+        }
+        $xavg = $xtotal / $count;
+        $yavg = $ytotal / $count;
+
+    }
 
 }
