@@ -33,7 +33,8 @@ $string['week_displayunit'] = 'WEEK';
 $string['confirm_delete_global'] = 'This is a global habit. Are you sure you want to delete? This will remove the habit for all users';
 $string['confirm_delete_personal'] = 'This is a personal habit. Are you sure you want to delete?';
 $string['settings_heading'] = 'Good Habits';
-$string['settings_desc'] = 'The intention of this plugin is to help track habits over time. <a href="{$a}">Click here to start using.</a>';
+$string['settings_desc'] = 'The intention of this plugin is to help track habits over time. <a href="{$a}">Click here to start using.</a>
+<p></p><p></p><p>A quick guide to how to use this is <a href="https://www.youtube.com/watch?v=t5myhN3wvAc">available here</a>.</p>';
 
 $string['good_habits:manage_entries'] = 'Manage Entries';
 $string['good_habits:manage_global_habits'] = 'Manage Global Habits';
