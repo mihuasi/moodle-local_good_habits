@@ -123,6 +123,46 @@ jQuery(window).on('load',function($) {
         return x + ' / ' + y;
     };
 
+    var saveEntry = function(x, y, selectedCheckmark) {
+        var wwwroot = getHiddenData('wwwroot');
+
+        var sesskey = getHiddenData('sesskey');
+        var timestamp = selectedCheckmark.data('timestamp');
+        var periodDuration = $('.goodhabits-container .calendar').data('period-duration');
+        var habitId = selectedCheckmark.parent().data('id');
+        var data = {x: x,y: y, habitId: habitId, timestamp: timestamp, periodDuration: periodDuration, sesskey: sesskey};
+        $.post( wwwroot + "/local/good_habits/ajax_save_entry.php", data)
+            .done(function( data ) {
+
+            });
+        selectedCheckmark.data('xVal', x);
+        selectedCheckmark.data('yVal', y);
+        selectedCheckmark.attr("data-x", x);
+        selectedCheckmark.attr("data-y", y);
+        selectedCheckmark.removeClass(function (index, className) {
+            return (className.match (/(^|\s)[xy]-val-\S+/g) || []).join(' ');
+        });
+        selectedCheckmark.addClass('x-val-' + x);
+        selectedCheckmark.addClass('y-val-' + y);
+
+        var displayVals = x + ' / ' + y;
+        selectedCheckmark.text(displayVals);
+    };
+
+    var closeEntry = function(habitId) {
+        $('.habit-grid-container-' + habitId).empty();
+
+        $('.goodhabits-container').removeClass('grid-is-open');
+
+        $('.checkmark').removeClass('is-selected');
+
+        $(document).unbind('keydown');
+    };
+
+    var showGrid = function(habitId) {
+        $('.habit-grid-container-' + habitId).show()
+    };
+
     $('.checkmark').click(function () {
 
         var gridOpen = $('.goodhabits-container').hasClass('grid-is-open');
@@ -138,14 +178,25 @@ jQuery(window).on('load',function($) {
         }
 
         var el = $(this);
+        var setByKey = false;
+        var habitId = el.parent().data('id');
+        $('.habit-grid-container-' + habitId).hide();
+
+        $(document).keydown(function (e) {
+            var keyval = e.key;
+            if (parseInt(keyval) && keyval > 0 && keyval <= 9) {
+                saveEntry(keyval, keyval, el);
+                setByKey = true;
+                closeEntry(habitId);
+            }
+            $(document).unbind('keydown');
+        });
 
         x = parseInt(el.attr("data-x"));
         y = parseInt(el.attr("data-y"));
 
         el.addClass('is-selected');
         $('.goodhabits-container').addClass('grid-is-open');
-
-        var habitId = el.parent().data('id');
 
         var cancelButton = '<button data-type="cancel" type="cancel" name="cancelGrid" value="Cancel">';
         var saveButton = '<button class="save-button" data-type="submit" type="submit" name="saveGrid" value="Save" disabled>';
@@ -165,7 +216,7 @@ jQuery(window).on('load',function($) {
             " <div class='clear-both'></div> ");
 
         initGrid(x,y);
-
+        showGrid(habitId);
     });
 
 
@@ -175,41 +226,15 @@ jQuery(window).on('load',function($) {
         var action = $(this).data('type');
         var selectedCheckmark = $('.checkmark.is-selected');
         var habitId = selectedCheckmark.parent().data('id');
-        if (action == 'submit') {
-            var wwwroot = getHiddenData('wwwroot');
-            var timestamp = selectedCheckmark.data('timestamp');
-            var periodDuration = $('.goodhabits-container .calendar').data('period-duration');
-            var sesskey = getHiddenData('sesskey');
-            var data = {x: values.x,y: values.y, habitId: habitId, timestamp: timestamp, periodDuration: periodDuration, sesskey: sesskey};
-            $.post( wwwroot + "/local/good_habits/ajax_save_entry.php", data)
-                .done(function( data ) {
-                    // alert( "Data Loaded: " + data );
-                    // alert(245);
-                });
-            selectedCheckmark.data('xVal', values.x);
-            selectedCheckmark.data('yVal', values.y);
-            selectedCheckmark.attr("data-x", values.x);
-            selectedCheckmark.attr("data-y", values.y);
-            selectedCheckmark.removeClass(function (index, className) {
-                return (className.match (/(^|\s)[xy]-val-\S+/g) || []).join(' ');
-            });
-            selectedCheckmark.addClass('x-val-' + values.x);
-            selectedCheckmark.addClass('y-val-' + values.y);
 
-            var displayVals = values.x + ' / ' + values.y;
-            selectedCheckmark.text(displayVals);
+        if (action == 'submit') {
+            saveEntry(values.x, values.y, selectedCheckmark);
         }
         if (action == 'cancel') {
             resetCheckmarkVals(selectedCheckmark);
         }
 
-
-
-        $('.habit-grid-container-' + habitId).empty();
-
-        $('.goodhabits-container').removeClass('grid-is-open');
-
-        $('.checkmark').removeClass('is-selected');
+        closeEntry(habitId);
     });
 
     $('.goodhabits-container').on('change', '.talentgrid-hidden-response', function() {
