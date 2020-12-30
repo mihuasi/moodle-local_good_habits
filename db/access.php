@@ -54,4 +54,14 @@ $capabilities = array(
             'user' => CAP_ALLOW
         )
     ),
+
+    'local/good_habits:manage_personal_breaks' => array(
+        'riskbitmask' => RISK_SPAM,
+        'contextlevel' => CONTEXT_SYSTEM,
+        'captype' => 'write',
+        'archetypes' => array(
+            'student' => CAP_ALLOW,
+            'user' => CAP_ALLOW
+        )
+    ),
 );

@@ -28,6 +28,7 @@ require_once('classes/FlexiCalendar.php');
 require_once('classes/FlexiCalendarUnit.php');
 require_once('classes/Helper.php');
 require_once('classes/IndexHelper.php');
+require_once('classes/BreaksHelper.php');
 
 require_login();
 
@@ -88,6 +89,10 @@ echo $renderer->print_module($calendarhtml, $habitshtml);
 
 if (has_capability('local/good_habits:manage_entries', $context)) {
     $renderer->print_delete_my_entries();
+}
+
+if (has_capability('local/good_habits:manage_personal_breaks', $context)) {
+    $renderer->print_manage_personal_breaks();
 }
 
 echo $OUTPUT->footer();

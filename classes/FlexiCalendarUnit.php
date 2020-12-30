@@ -74,7 +74,12 @@ class FlexiCalendarUnit extends \DateTime {
     public function get_classes() {
         $month = $this->format('F');
         $month = strtolower($month);
-        $classes = array($month, 'time-unit-' . $this->getTimestamp());
+        $timestamp = $this->getTimestamp();
+        $isinbreak = BreaksHelper::is_in_a_break($timestamp);
+        $classes = array($month, 'time-unit-' . $timestamp);
+        if ($isinbreak) {
+            $classes[] = 'is-in-break';
+        }
         return $classes;
     }
 }

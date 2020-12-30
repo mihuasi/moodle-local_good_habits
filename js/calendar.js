@@ -160,7 +160,7 @@ jQuery(window).on('load',function($) {
     };
 
     var showGrid = function(habitId) {
-        $('.habit-grid-container-' + habitId).show()
+        $('.habit-grid-container-' + habitId).show();
     };
 
     $('.checkmark').click(function () {
@@ -174,6 +174,10 @@ jQuery(window).on('load',function($) {
         }
 
         if (gridOpen) {
+            return null;
+        }
+
+        if ($(this).hasClass('is-in-break')) {
             return null;
         }
 

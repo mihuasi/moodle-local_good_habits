@@ -151,6 +151,7 @@ class local_good_habits_renderer extends plugin_renderer_base {
             $dataxytxt = '';
             $txt = '<div class="empty-day">  </div>';
             $timestamp = $unit->getTimestamp();
+            $isinbreak = gh\BreaksHelper::is_in_a_break($timestamp);
             $classxy = 'noxy';
             if (isset($entries[$timestamp])) {
                 $entry = $entries[$timestamp];
@@ -160,10 +161,13 @@ class local_good_habits_renderer extends plugin_renderer_base {
                 $txt = $xval . ' / ' . $yval;
                 $classxy = 'x-val-' . $xval . ' y-val-' . $yval;
             }
-            $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context);
+            $caninteract = has_capability('local/good_habits:manage_entries', $PAGE->context) AND !$isinbreak;
             $caninteractclass = ($caninteract) ? '' : ' no-interact ';
 
             $classes = 'checkmark ' . $caninteractclass . ' ' . $classxy;
+            if ($isinbreak) {
+                $classes .= ' is-in-break';
+            }
             $html .= '<div class="' . $classes . '" data-timestamp="'. $timestamp .'" '.$dataxytxt.'>';
             $html .= $txt . '</div>';
         }
@@ -280,7 +284,29 @@ class local_good_habits_renderer extends plugin_renderer_base {
         $sessionkey = $this->print_hidden_session_key();
         $submit = "<br /><br /><br /><input type='submit' value='$submittxt'> </input>";
         $action = "<input type='hidden' name='action' value='delete-all-entries'> </input>";
-        $form = "<form class='delete-all-entries-form' method='post'>$sessionkey $action $submit</form>";
+        $confirmtext = get_string('confirm_delete_entries_text', 'local_good_habits');
+        $js = 'return confirm(\'' . $confirmtext . '\');';
+        $onsubmit = ' onsubmit="'.$js.'" ';
+        $form = "<form class='delete-all-entries-form' method='post' $onsubmit>$sessionkey $action $submit</form>";
+        echo $form;
+    }
+
+    public function print_manage_personal_breaks() {
+        $url = new moodle_url('/local/good_habits/manage_breaks.php');
+        $text = get_string('manage_breaks', 'local_good_habits');
+        echo $this->print_link_as_form($url, $text);
+    }
+
+    public function print_home_link() {
+        $url = new moodle_url('/local/good_habits/index.php');
+        $text = get_string('home_link', 'local_good_habits');
+        echo $this->print_link_as_form($url, $text);
+    }
+
+    public function print_link_as_form(moodle_url $url, $text) {
+        $url = $url->out();
+        $submit = "<input type='submit' value='$text' />";
+        $form = "<br /><form class='manage-breaks-form' method='post' action='$url'>$submit</form>" ;
         echo $form;
     }
 }

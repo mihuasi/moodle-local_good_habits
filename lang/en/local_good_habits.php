@@ -40,6 +40,7 @@ $string['good_habits:manage_entries'] = 'Manage Entries';
 $string['good_habits:manage_global_habits'] = 'Manage Global Habits';
 $string['good_habits:view'] = 'View';
 $string['delete_all_entries'] = 'Delete All My Habit Entries';
+$string['confirm_delete_entries_text'] = 'Do you really want to delete all of your habit entries?';
 
 $string['privacy:metadata:local_good_habits_entry'] = 'Entries in the habit-tracking calendar.';
 $string['privacy:metadata:userid'] = 'The ID of the user with this habit entry.';
@@ -78,3 +79,14 @@ $string['overlay_2_3'] = 'Working hard to achieve';
 $string['overlay_3_1'] = 'You get what you put in!';
 $string['overlay_3_2'] = 'Sticking at it';
 $string['overlay_3_3'] = 'Persevering with a challenge';
+
+$string['manage_breaks'] = 'Manage Breaks';
+$string['manage_breaks_title'] = 'Good Habits - Manage Breaks';
+$string['fromdate_text'] = 'From date';
+$string['todate_text'] = 'To date';
+$string['addbreak_submit_text'] = 'Add Break';
+$string['home_link'] = 'Go back to Good Habits';
+$string['actions'] = 'Actions';
+$string['delete'] = 'Delete';
+$string['break_deleted'] = 'Break Deleted';
+$string['break_added'] = 'Break Added';
