@@ -31,7 +31,7 @@ require_login();
 
 $context = context_system::instance();
 
-require_capability('local/good_habits:view', $context);
+require_capability('local/good_habits:manage_personal_breaks', $context);
 $pagetitle = get_string('manage_breaks_title', 'local_good_habits');
 
 $PAGE->set_context($context);
