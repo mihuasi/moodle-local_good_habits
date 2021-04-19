@@ -42,6 +42,9 @@ if ($habit->is_global()) {
     require_capability('local/good_habits:manage_global_habits', $context);
 } else {
     require_capability('local/good_habits:manage_personal_habits', $context);
+    if ($USER->id != $habit->userid) {
+        print_error('Trying to edit a personal habit that does not belong to you');
+    }
 }
 
 $habit->delete();
